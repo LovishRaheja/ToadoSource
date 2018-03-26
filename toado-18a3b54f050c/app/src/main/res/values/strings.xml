@@ -1,0 +1,45 @@
+<resources>
+
+    <string name="app_name">Toado</string>
+    <string name="entermobhint">Enter mobile number</string>
+    <string name="acceptterms">I agree to terms and conditions.</string>
+    <string name="enterotp">We will try to detect otp sent to the mobile number entered by you. Please wait. Otherwise enter manually.</string>
+    <string name="enterphonenumber">Please confirm your country code and enter your mobile number</string>
+    <string name="selectcountry">Select country</string>
+    <string name="sending_sms">Waiting to automatically detect an SMS sent to </string>
+    <string name="flashcalling">Waiting to automatically detect a FLASHCALL to </string>
+    <string name="inprogress">Verification in\nprogress</string>
+    <string name="verified">Verification successful</string>
+    <string name="failed">Verification failed</string>
+    <string name="sms_enter_code">Please enter the code you received</string>
+    <string name="flashcall_enter_cli">Please enter the phone number you received a call from</string>
+    <string name="facebook_app_id">1599763193436867</string>
+    <string name="fb_login_protocol_scheme">fb1599763193436867</string>
+    <string name="title_activity_image_comment">ImageComment</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="msgenterdetails">Please enter all the details to continue.</string>
+    <string name="enternameerror">Please enter your name to continue.</string>
+    <string name="enterageerror">Please enter a valid age to continue.</string>
+    <string name="enterage13error">You should be atleast 13 years old to use this app.</string>
+    <string name="entergendererror">Please enter your gender to continue..</string>
+    <!--<string name="server">192.168.5.168</string>-->
+    <!--<string name="server_host">myserver</string>-->
+    <string name="serverkey">A0zbfY3t09p95Q5A</string>
+    <string name="server">149.56.143.13</string>
+    <string name="server_host">toadozan.tk</string>
+    <string name="intro_title">PlacePicker Sample</string>
+
+    <string name="pick_title">Pick a place</string>
+    <string name="pick_text">Clicking below constructs an Intent to show the place picker dialog.
+\nIf a place was selected, its details are read from the returned data and shown in a separate card.
+</string>
+    <string name="pick_action">Pick a place</string>
+
+    <string name="detail_text">Place id: %1$s\nAddress: %2$s\nPhone: %3$s\n\n%4$s</string>
+
+    <string name="empty"></string>
+
+    <string name="default_notification_channel_id">Toado Notification</string>
+</resources>

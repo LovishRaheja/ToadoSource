@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+
+        <ImageView
+            android:id="@+id/imgprofile"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_below="@+id/topbar"
+            android:scaleType="fitCenter"
+            android:foregroundGravity="center"
+            android:layout_toEndOf="@+id/tvname"
+            android:background="@color/black"
+            android:src="@drawable/ic_person_black_24dp" />
+
+
+
+        <TextView
+            android:id="@+id/tvname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        android:layout_gravity="left"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Loading Data..." />
+
+
+        <TextView
+            android:id="@+id/tvage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv2"
+            android:layout_gravity="left"
+            android:textSize="16sp"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/tv1"
+            android:text=" 20yrs" />
+        <TextView
+            android:id="@+id/tvdist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+
+            android:textSize="16sp"
+            android:layout_gravity="left"
+            android:text=" Loading Distance" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:id="@+id/reqlay"
+
+            android:layout_margin="10dp">
+
+            <Button
+                android:id="@+id/sendreq"
+                android:layout_width="180dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/tvage"
+                android:text="Send Request"
+                android:background="@drawable/shape_button"
+                android:textColor="#ffffff"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Request Sent"
+            android:visibility="gone"
+            android:id="@+id/reqsent"
+            android:textSize="20sp"
+           />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:id="@+id/btnlay1"
+android:visibility="gone"
+            android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/imgvideo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/tvage"
+            android:src="@drawable/videoprofile"
+            android:text="Video"
+
+            android:layout_marginRight="10dp"
+            android:textColor="#ffffff"
+
+            />
+
+        <ImageView
+            android:id="@+id/imgcall"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="10dp"
+        android:src="@drawable/callprofile"
+
+            android:textColor="#ffffff"
+            android:text="Call"
+          />
+
+
+
+        <ImageView
+            android:id="@+id/imgchat"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/tvage"
+            android:layout_toRightOf="@+id/imgcall"
+            android:textColor="#ffffff"
+            android:layout_marginRight="10dp"
+           android:src="@drawable/msgprofile"
+            android:text="Chat"
+
+          />
+
+        <ImageView
+            android:id="@+id/imgemail"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/tvage"
+            android:layout_toRightOf="@+id/imgchat"
+           android:src="@drawable/mailprofile"
+            android:text="Email"
+
+            android:textColor="#ffffff"
+            />
+
+   </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/grey_300"></View>
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Interests" />
+
+        <TextView
+            android:id="@+id/tvintrsts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+          android:layout_gravity="left"
+            android:layout_margin="10dp"
+            android:textSize="16sp"
+
+            android:text="Interests" />
+
+
+    </LinearLayout>
+
+
+    </ScrollView>

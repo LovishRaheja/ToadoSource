@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relcontact"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal" >
+
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/profilePic"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_person_black_24dp"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:layout_marginTop="5dp"
+
+            android:paddingLeft="20dp"
+            android:layout_gravity="center_horizontal|center_vertical|center"
+            android:gravity="center_horizontal|center_vertical|center"
+            >
+
+            <TextView
+                android:background="@color/white"
+
+                android:text="Name"
+
+                android:id="@+id/tvtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:lines="1"
+
+                android:textSize="12sp"
+                />
+
+            <TextView
+                android:background="@color/white"
+
+                android:text=" accepted your friend request"
+
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:ellipsize="end"
+                android:lines="1"
+
+                android:textSize="12sp"
+                />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</LinearLayout>

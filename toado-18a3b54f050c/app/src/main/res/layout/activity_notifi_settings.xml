@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary"
+            android:padding="5dp"
+            android:layout_marginBottom="3dp">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_arrow_back"
+                android:id="@+id/back"
+                android:layout_gravity="center_horizontal|center_vertical"/>
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:padding="10dp"
+                android:text="Notifications"
+                android:id="@+id/tvtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imgcontact"
+                android:ellipsize="end"
+                android:lines="1"
+                android:background="@color/colorPrimary"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/msg_text_primary"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    <TextView
+        android:background="@color/white"
+        android:padding="10dp"
+        android:text="Conversation Tones"
+        android:layout_below="@id/tvtitle"
+        android:id="@+id/conversationtone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgcontact"
+        android:ellipsize="end"
+        android:lines="1"
+
+        android:textSize="@dimen/msg_text_primary"
+        />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Message Notifications"
+            android:ellipsize="end"
+            android:lines="1"
+            android:padding="10dp"
+            android:textSize="@dimen/msg_text_primary"
+            android:textColor="@color/bpBlue"
+            android:layout_below="@id/conversationtone"
+            android:textStyle="bold"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvmsgnotification"
+        android:layout_below="@+id/tvtitle"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Group Notifications"
+        android:ellipsize="end"
+        android:lines="1"
+        android:padding="10dp"
+      android:id="@+id/grpnoti"
+        android:textSize="@dimen/msg_text_primary"
+        android:textColor="@color/bpBlue"
+        android:layout_below="@id/rvmsgnotification"
+        android:textStyle="bold"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvgrpnotification"
+        android:layout_below="@+id/grpnoti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
+</ScrollView>

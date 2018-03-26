@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relcontact"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal" >
+
+
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:id="@+id/profilePic"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_person_black_24dp"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+
+        android:paddingLeft="20dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+       >
+
+    <TextView
+        android:background="@color/white"
+
+        android:text="Name"
+
+        android:id="@+id/tvtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:textStyle="bold"
+        android:ellipsize="end"
+        android:lines="1"
+
+        android:textSize="12sp"
+        />
+
+        <TextView
+            android:background="@color/white"
+
+            android:text=" sent you the friend request"
+
+
+            android:id="@+id/desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:ellipsize="end"
+            android:lines="1"
+
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:paddingLeft="20dp"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:text="Accept"
+            android:textSize="12sp"
+            android:id="@+id/accept"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/shape_button"/>
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_reject"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/reject"
+            android:textSize="12sp"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:text="Reject"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+</LinearLayout>
