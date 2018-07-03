@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/docLayout"
+
+
+    android:layout_margin="10dp"
+
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chatbubbleout"
+        android:orientation="horizontal"
+        android:id="@+id/docLinear"
+
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:id="@+id/docImage"
+            android:layout_centerVertical="true"
+            android:src="@drawable/docsimage"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="File Name"
+android:layout_toRightOf="@+id/docImage"
+            android:textSize="14dp"
+            android:id="@+id/docName"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_margin="10dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/docTime"
+            android:textSize="10dp"
+            android:layout_centerVertical="true"
+            android:padding="15dp"
+
+            android:layout_alignParentRight="true"
+           />
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>
+

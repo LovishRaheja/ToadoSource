@@ -30,6 +30,7 @@ import java.util.List;
 import static com.app.toado.helper.ToadoConfig.DBREF;
 import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
+
 /**
  * Created by ghanendra on 20/06/2017.
  */
@@ -47,6 +48,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(TAG1, "data1: " + remoteMessage.getData().get("sendertimestamp"));
         Log.d(TAG1, "data2: " + remoteMessage.getData().get("msgid"));
         Log.d(TAG1, "data3: " + remoteMessage.getData().get("chatref"));
+
+
 
         String title = remoteMessage.getData().get("title");
         if (!title.matches("Incoming Sinch Call")) {

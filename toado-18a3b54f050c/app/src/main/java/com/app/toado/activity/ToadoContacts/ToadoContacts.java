@@ -1,9 +1,15 @@
 package com.app.toado.activity.ToadoContacts;
 
 import android.app.AlertDialog;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Handler;
+import android.os.SystemClock;
+import android.provider.ContactsContract;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,12 +17,21 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.toado.FirebaseChat.ForwardChatMessage;
 import com.app.toado.R;
 import com.app.toado.adapter.DistanceUserAdapter;
 import com.app.toado.adapter.ToadoAdapter;
@@ -41,6 +56,7 @@ import java.util.HashMap;
 import static android.widget.LinearLayout.VERTICAL;
 import static com.app.toado.helper.ToadoConfig.DBREF_USER_LOC;
 import static com.app.toado.helper.ToadoConfig.DBREF_USER_PROFILES;
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class ToadoContacts extends AppCompatActivity {
 
@@ -63,8 +79,13 @@ public class ToadoContacts extends AppCompatActivity {
     Boolean alertdisp = true;
     int count = 0;
     ImageView back;
-
+    TextView recent;
     AlertDialog.Builder builder;
+
+    ImageView search,cancelSearch,addContact,optionsMenu;
+    RelativeLayout searchLayout;
+    ProgressBar pb;
+    EditText searchrecycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +95,7 @@ public class ToadoContacts extends AppCompatActivity {
 
         session = new UserSession(this);
 
-
+        recent=(TextView)findViewById(R.id.recent);
         if (ToadoContacts.this.getIntent().getStringExtra("mykey") != null) {
             userkey = this.getIntent().getStringExtra("mykey");
             System.out.println("1 homefragment from session" + userkey);
@@ -83,7 +104,136 @@ public class ToadoContacts extends AppCompatActivity {
             userkey = session.getUserKey();
         }
 
-back=(ImageView)findViewById(R.id.back);
+
+        back=(ImageView)findViewById(R.id.back);
+        search=(ImageView)findViewById(R.id.search);
+        searchLayout=(RelativeLayout)findViewById(R.id.searchlayout);
+        cancelSearch=(ImageView)findViewById(R.id.cancelSearch);
+        optionsMenu=(ImageView)findViewById(R.id.optionsMenu);
+        pb=(ProgressBar)findViewById(R.id.pb);
+        addContact=(ImageView)findViewById(R.id.addContact);
+        searchrecycler=(EditText)findViewById(R.id.searchRecycler);
+
+
+
+        searchrecycler.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                //after the change calling the method and passing the search input
+                filter(editable.toString());
+            }
+        });
+
+
+        optionsMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(ToadoContacts.this);
+                builder.setTitle("Select any option");
+
+// add a list
+                String[] animals = {"Invite a friend", "Contacts", "Refresh","Help"};
+                builder.setItems(animals, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                try {
+                                    Intent i = new Intent(Intent.ACTION_SEND);
+                                    i.setType("text/plain");
+                                    i.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+                                    String sAux = "\nLet me recommend you this application\n\n";
+                                    sAux = sAux + "https://play.google.com/store/apps/details?id=Orion.Soft \n\n";
+                                    i.putExtra(Intent.EXTRA_TEXT, sAux);
+                                    startActivity(Intent.createChooser(i, "choose one"));
+                                } catch(Exception e) {
+                                    //e.toString();
+                                }
+                                break;
+                            case 1:
+
+                                Intent intent = new Intent(Intent.ACTION_VIEW, ContactsContract.Contacts.CONTENT_URI);
+                                startActivity(intent);
+                                break;
+
+                            case 2:
+                                pb.setVisibility(View.VISIBLE);
+                                Thread timer = new Thread()
+                                {
+                                    public void run()
+                                    {
+                                        try
+                                        {
+                                            for(int i=1; i<=30; i ++)
+                                            {
+                                                pb.setProgress(i);
+                                                sleep(30);
+                                            }
+
+
+                                        }catch(Exception e){}
+                                        finally{
+                                            runOnUiThread( new Runnable() {
+                                                public void run() {
+                                                    pb.setVisibility(View.INVISIBLE);
+                                                   // Toast.makeText(ToadoContacts .this, "Thank you for downloading", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                        }
+
+                                    }
+                                };
+                                timer.start();
+
+                                break;
+                            case  3:
+
+                                Intent i=new Intent(ToadoContacts.this,ToadoContactsHelp.class);
+                                startActivity(i);
+                                break;
+                        }
+                    }
+                });
+
+// create and show the alert dialog
+                android.support.v7.app.AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+        addContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ContactsContract.Intents.Insert.ACTION);
+                intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
+                startActivity(intent);
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        cancelSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchLayout.setVisibility(View.GONE);
+            }
+        });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,10 +257,69 @@ back=(ImageView)findViewById(R.id.back);
         mAdapter = new ToadoAdapter(list, this);
         recyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+        if(list.size()>0)
+        {
+            recent.setVisibility(View.GONE);
+        }
+
+
     }
 
 
+    private void filter(String text) {
+        //new array list that will hold the filtered data
+        ArrayList<DistanceUser> filterdNames = new ArrayList<>();
 
+        //looping through existing elements
+        for (DistanceUser s : list) {
+            //if the existing elements contains the search input
+
+                //adding the element to filtered list
+                filterdNames.add(s);
+
+        }
+        mAdapter.notifyDataSetChanged();
+
+        //calling a method of the adapter class and passing the filtered list
+      //  mAdapter.filterList(filterdNames);
+    }
+
+    public void filterList(ArrayList<DistanceUser> filterdNames) {
+        this.list = filterdNames;
+        mAdapter.notifyDataSetChanged();
+    }
+
+    class AsynTasks extends AsyncTask<Void, Integer, Void>
+    {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            for(int i=1;i<=100;i++)
+            {
+                SystemClock.sleep(2000);
+                publishProgress(i);
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            pb.setVisibility(View.INVISIBLE);
+           // Toast.makeText(ProgressBarDemo .this, "Thank you for downloading", Toast.LENGTH_SHORT).show();
+        }
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            pb.setProgress(values[0]);
+        }
+    }
+
+    /**  @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_toado_chat, menu);
+        return true;
+    }*/
 
     @Override
     public void onResume() {
@@ -168,6 +377,10 @@ back=(ImageView)findViewById(R.id.back);
 //                                            System.out.println(dataSnapshot.toString() + "key from homefragment" + key);
                                             mAdapter.notifyDataSetChanged();
                                             callMethod(dataSnapshot, mylocation, location,  key);
+                                            if(list.size()>0)
+                                            {
+                                                recent.setVisibility(View.GONE);
+                                            }
                                         } else {
 //                                            System.out.println("homefragment else no datasnapshot onkeyenetered");
                                             handleNoKeys();

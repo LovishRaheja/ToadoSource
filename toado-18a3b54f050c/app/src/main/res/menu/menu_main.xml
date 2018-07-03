@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
 
     <item
-        android:id="@+id/menusettings"
-        android:title="Settings"/>
+        android:id="@+id/menubroadcast"
+        android:title="Broadcast Messages"
+       app:showAsAction="ifRoom"
+
+         />
 
     <item
         android:id="@+id/menustar"
-        android:title="Starred messages"/>
+        android:title="Starred messages"
+        app:showAsAction="always"
+      />
 
-    <item
-        android:id="@+id/menulogout"
-        android:title="Logout"/>
+
 
 
 </menu>

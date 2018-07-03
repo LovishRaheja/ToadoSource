@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="15sp">
+    <ImageView
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/MatchImage"/>
+
+    <ImageView android:layout_width="10dp"
+        android:layout_height="10dp"
+
+        android:id="@+id/showOnline"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/not_online"></ImageView>
+    <LinearLayout
+        android:paddingLeft="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/MatchImage"
+
+        >
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Match's Name"
+            android:textStyle="bold"
+
+            android:textSize="16dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:id="@+id/MatchName"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recentMsg"
+            android:text=""/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:layout_margin="5dp"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical">
+        <TextView
+            android:text=""
+            android:id="@+id/timestamp"
+            android:layout_gravity="right"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@+id/author"
+            android:textColor="@color/bg_circle_unread"
+            android:textSize="@dimen/timestamp"  />
+
+        <RelativeLayout
+            android:id="@+id/relunread"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="right"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"
+
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:id="@+id/unread_circle"
+                android:layout_width="@dimen/unread_width_height"
+                android:layout_height="@dimen/unread_width_height"
+                android:layout_centerInParent="true"
+                android:src="@drawable/bg_circle_unread" />
+
+            <TextView
+                android:id="@+id/unreadmsgs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="1"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/icon_unread" />
+        </RelativeLayout></LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Match's ID"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:id="@+id/Matchid"/>
+
+</RelativeLayout>

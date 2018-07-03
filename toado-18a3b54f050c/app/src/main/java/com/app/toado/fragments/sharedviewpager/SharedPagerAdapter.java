@@ -18,12 +18,14 @@ public class SharedPagerAdapter extends FragmentStatePagerAdapter {
     private ArrayList<SharedPagerItems> mItems;
     Context mContext;
 
-    private String mOtherUserKey;
 
-    public SharedPagerAdapter(FragmentManager fm1, Context context, String otherUserKey) {
+    private String mOtherUserKey,chatId;
+
+    public SharedPagerAdapter(FragmentManager fm1, Context context, String otherUserKey,String chatId) {
         super(fm1);
         mContext=context;
         mOtherUserKey = otherUserKey;
+        this.chatId=chatId;
     }
 
     @Override
@@ -31,6 +33,7 @@ public class SharedPagerAdapter extends FragmentStatePagerAdapter {
         Fragment fragment = null;
         Bundle args = new Bundle();
         args.putString("OtherUserKey", mOtherUserKey);
+        args.putString("chatId",chatId);
         switch (mItems.get(position).getType()) {
             case Media:
                 fragment = SharedMedia.newInstance(args);

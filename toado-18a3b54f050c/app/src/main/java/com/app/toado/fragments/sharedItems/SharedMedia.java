@@ -15,8 +15,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.toado.R;
+import com.app.toado.TinderChat.Chat.ChatActivity;
+import com.app.toado.TinderChat.Chat.ChatObject;
 import com.app.toado.adapter.DistanceUserAdapter;
 import com.app.toado.adapter.SharedMediaAdapter;
 import com.app.toado.helper.ToadoAlerts;
@@ -29,6 +33,7 @@ import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
 import com.firebase.geofire.GeoQuery;
 import com.firebase.geofire.GeoQueryEventListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +42,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import io.realm.DynamicRealm;
 import io.realm.Realm;
@@ -56,11 +62,11 @@ public class SharedMedia extends Fragment {
     private RecyclerView mMediaRV;
     private SharedMediaAdapter mMediaAdapter;
 
-    private String mOtherUserKey;
+    private String mOtherUserKey,chatId;
 
     private UserSession mUserSession;
+    DatabaseReference mDatabaseUser, mDatabaseChat;
 
-    private ArrayList<ChatMessageRealm> mList;
 
     public static SharedMedia newInstance() {
         SharedMedia fragment = new SharedMedia();
@@ -76,7 +82,7 @@ public class SharedMedia extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        myFragmentView = inflater.inflate(R.layout.fragment_home, container, false);
+        myFragmentView = inflater.inflate(R.layout.fragment_media, container, false);
         return myFragmentView;
     }
 
@@ -84,36 +90,87 @@ public class SharedMedia extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fmm = getFragmentManager();
-
-        Bundle bundle = getArguments();
-        mOtherUserKey = bundle.getString("OtherUserKey");
-
         mUserSession = new UserSession(getContext());
+       Bundle bundle = getArguments();
+        mOtherUserKey = bundle.getString("OtherUserKey");
+        chatId=bundle.getString("chatId");
+        mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chat").child(chatId);
 
-        Sort sort[] = {Sort.ASCENDING};
-        String[] fieldNames = {"msgid"};
 
-        mList = new ArrayList<>();
 
-        Realm mRealm = Realm.getDefaultInstance();
-        RealmResults<ChatMessageRealm> shows =
-                mRealm.
-                    where(ChatMessageRealm.class).
-                        equalTo("chatref", mUserSession.getUserKey() + mOtherUserKey).
-                    findAll();
+        mDatabaseChat.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-        for(ChatMessageRealm cm : shows) {
-            mList.add(cm);
-        }
+                if(dataSnapshot.exists())
+                {
+                    if(dataSnapshot.getValue().toString().contains("chatImages"))
+                    {
+                        String message = null;
+                        String createdByUser = null;
+                        String timestamp=null;
+
+                        if(dataSnapshot.child("text").getValue()!=null){
+                            message = dataSnapshot.child("text").getValue().toString();
+                        }
+                        if(dataSnapshot.child("createdByUser").getValue()!=null){
+                            createdByUser = dataSnapshot.child("createdByUser").getValue().toString();
+                        }
+                        if(dataSnapshot.child("timestamp").getValue()!=null){
+                            timestamp = dataSnapshot.child("timestamp").getValue().toString();
+                        }
+
+
+                        if(message!=null && createdByUser!=null){
+                            Boolean currentUserBoolean = false;
+                            if(createdByUser.equals(mUserSession.getUserKey())){
+                                currentUserBoolean = true;
+                            }
+                            SharedMediaObject newMessage = new SharedMediaObject(message,timestamp, currentUserBoolean);
+                            resultsChat.add(newMessage);
+                            mMediaAdapter.notifyDataSetChanged();
+
+                        }
+                    }
+                }
+
+            }
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            }
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            }
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+
+
 
 
         mMediaRV = (RecyclerView) view.findViewById(R.id.rv_distanceUser);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),3);
         mMediaRV.setLayoutManager(gridLayoutManager);
-        mMediaAdapter = new SharedMediaAdapter(mList, getContext());
+        gridLayoutManager.setAutoMeasureEnabled(true);
+
+        mMediaAdapter = new SharedMediaAdapter( getDataSetChat(), getContext(),mOtherUserKey,chatId);
         mMediaRV.setAdapter(mMediaAdapter);
 
+
     }
+
+
+
+    ArrayList<SharedMediaObject> resultsChat = new ArrayList<SharedMediaObject>();
+    List<SharedMediaObject> getDataSetChat() {
+        return resultsChat;
+    }
+
 
 
 }

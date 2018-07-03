@@ -16,8 +16,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.toado.R;
 import com.app.toado.activity.settings.DistancePreferencesActivity;
@@ -65,7 +67,8 @@ public class HomeFragment extends Fragment {
     ToadoAlerts alr;
     Boolean alertdisp = true;
     int count = 0;
-
+    TextView dis;
+    Button increase;
     AlertDialog.Builder builder;
 
     public static HomeFragment newInstance() {
@@ -121,6 +124,25 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
 
+         dis=(TextView)view.findViewById(R.id.dis);
+         increase=(Button)view.findViewById(R.id.increasedistance);
+
+        if(mAdapter.getItemCount()!=0 && list.size()!=0){
+            System.out.print("loading users");
+            dis.setVisibility(View.GONE);
+            increase.setVisibility(View.GONE);
+
+
+        }else if(mAdapter.getItemCount()==0 && list.size()==0)
+        {
+
+            System.out.print("loading users");
+            dis.setVisibility(View.VISIBLE);
+            increase.setVisibility(View.VISIBLE);
+
+            // Toast.makeText(getContext(), "Loading Users", Toast.LENGTH_SHORT).show();
+        }
+
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -136,6 +158,14 @@ public class HomeFragment extends Fragment {
 
 
 
+        });
+
+        increase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getActivity(),DistancePreferencesActivity.class);
+                startActivity(i);
+            }
         });
 
     }
@@ -196,6 +226,24 @@ public class HomeFragment extends Fragment {
 //                                            System.out.println(dataSnapshot.toString() + "key from homefragment" + key);
                                             mAdapter.notifyDataSetChanged();
                                             callMethod(dataSnapshot, mylocation, location, key);
+
+                                            if(mAdapter.getItemCount()!=0 && list.size()!=0){
+                                                System.out.print("loading users");
+                                                dis.setVisibility(View.GONE);
+                                                increase.setVisibility(View.GONE);
+
+
+                                            }else if(mAdapter.getItemCount()==0 && list.size()==0)
+                                            {
+
+                                                System.out.print("loading users");
+                                                dis.setVisibility(View.VISIBLE);
+                                                increase.setVisibility(View.VISIBLE);
+
+                                                // Toast.makeText(getContext(), "Loading Users", Toast.LENGTH_SHORT).show();
+                                            }
+
+
                                         } else {
 //                                            System.out.println("homefragment else no datasnapshot onkeyenetered");
                                             handleNoKeys();
@@ -339,10 +387,33 @@ public class HomeFragment extends Fragment {
 
             hashMap.put(key1, distanceUser);
             mAdapter.notifyDataSetChanged();
+            if(list.size()==0)
+            {
+                dis.setVisibility(View.VISIBLE);
+                increase.setVisibility(View.VISIBLE);
+            }
+            if(mAdapter.getItemCount()!=0 && list.size()!=0){
+                System.out.print("loading users");
+                dis.setVisibility(View.GONE);
+                increase.setVisibility(View.GONE);
+
+
+            }else if(mAdapter.getItemCount()==0 && list.size()==0)
+            {
+
+                System.out.print("loading users");
+                dis.setVisibility(View.VISIBLE);
+                increase.setVisibility(View.VISIBLE);
+
+                // Toast.makeText(getContext(), "Loading Users", Toast.LENGTH_SHORT).show();
+            }
 //            System.out.println(distanceUser.getName() + " distance user to add " + list.size());
 
         }
     }
+
+
+
 
     public void removeTile(String key, DistanceUser du) {
         hashMap.remove(key);

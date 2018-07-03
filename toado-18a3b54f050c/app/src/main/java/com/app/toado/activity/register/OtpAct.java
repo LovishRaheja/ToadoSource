@@ -209,7 +209,7 @@ public class OtpAct extends ToadoBaseActivity implements ActivityCompat.OnReques
             new CountDownTimer(60000, 1000) {
 
                 public void onTick(long millisUntilFinished) {
-                    btnresendotp.setText("Try again in : " + millisUntilFinished / 1000 + " seconds.");
+                    btnresendotp.setText("Try again in : " + millisUntilFinished / 1000 + " seconds");
                     btnresendotp.setTextSize(14);
                     //here you can have your logic to set text to edittext
                     btnresendotp.setEnabled(false);
@@ -218,9 +218,11 @@ public class OtpAct extends ToadoBaseActivity implements ActivityCompat.OnReques
                 public void onFinish() {
                     if (mIsSmsVerification)
                         btnresendotp.setText("Resend Otp");
-                    else
-                        btnresendotp.setText("Flash Call again");
+                    else {
+                        btnresendotp.setTextSize(14);
 
+                        btnresendotp.setText("Flash Call again");
+                    }
                     btnresendotp.setEnabled(true);
                 }
 
@@ -357,7 +359,7 @@ public class OtpAct extends ToadoBaseActivity implements ActivityCompat.OnReques
             } else {
                 try {
                     System.out.println("otp act successful signin verification " + mPhoneNumber);
-                    Intent intent = new Intent(OtpAct.this, ChooseAct.class);
+                    Intent intent = new Intent(OtpAct.this, PersonalDetailsAct.class);
                     intent.putExtra(MobileRegisterAct.INTENT_PHONENUMBER, mPhoneNumber);
                     startActivity(intent);
                     finish();

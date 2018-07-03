@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.toado.R;
+import com.app.toado.activity.profile.ProfileAct;
 import com.app.toado.adapter.DistanceUserAdapter;
 import com.app.toado.adapter.SettingsAdapter;
 import com.app.toado.fragments.home.HomeFragment;
@@ -66,6 +67,7 @@ public class SettingsFragment extends Fragment {
 
     ImageView userImage;
     TextView name,phone;
+    LinearLayout settingsProfile;
 
 
     private SettingsAdapter mSettingsAdapter;
@@ -106,6 +108,15 @@ public class SettingsFragment extends Fragment {
         name=(TextView)view.findViewById(R.id.name);
         phone=(TextView)view.findViewById(R.id.phone);
         UserSession usess = new UserSession(getActivity());
+        settingsProfile=(LinearLayout)view.findViewById(R.id.settingsProfile);
+        settingsProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getApplicationContext(),ProfileAct.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
+            }
+        });
 
 
         //usrkey = us.getUserKey();
@@ -149,11 +160,13 @@ public class SettingsFragment extends Fragment {
 
 
 
-        list.add("Profile");
         list.add("Account");
+        list.add("Chats");
         list.add("Invite");
+        list.add("App Settings");
         list.add("Distance and Gps");
         list.add("Help");
+        //list.add("Firebase Chat");
        // list.add("Logout");
         mSettingsAdapter.notifyDataSetChanged();
     }

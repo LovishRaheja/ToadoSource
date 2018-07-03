@@ -1,43 +1,44 @@
 package com.app.toado.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+
+import android.widget.Toast;
 
 import com.app.toado.R;
-import com.app.toado.helper.ChatHelper;
+
+import com.app.toado.TinderChat.Chat.ChatObject;
+import com.app.toado.fragments.sharedItems.SharedMediaObject;
+import com.app.toado.fragments.sharedItems.ShowSharedMedia;
 import com.app.toado.helper.CircleTransform;
-import com.app.toado.helper.EncryptUtils;
-import com.app.toado.model.ChatListModel;
-import com.app.toado.model.ChatMessage;
-import com.app.toado.model.realm.ActiveChatsRealm;
-import com.app.toado.model.realm.ChatMessageRealm;
+
 import com.bumptech.glide.Glide;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
-import static com.app.toado.helper.ToadoConfig.DBREF;
+import java.util.List;
 
 
 public class SharedMediaAdapter extends RecyclerView.Adapter<SharedMediaAdapter.MyViewHolder> {
 
     private final Context context;
-    private final ArrayList<ChatMessageRealm> list;
+    private List<SharedMediaObject> chatList;
 
-    public SharedMediaAdapter(ArrayList<ChatMessageRealm> list, Context context) {
+    String chatId;
+    String matchId;
+
+
+    public SharedMediaAdapter(List<SharedMediaObject> matchesList, Context context,String matchId,String chatId) {
+        this.chatList = matchesList;
         this.context = context;
-        this.list = list;
+        this.chatId=chatId;
+        this.matchId=matchId;
+
+
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -46,26 +47,45 @@ public class SharedMediaAdapter extends RecyclerView.Adapter<SharedMediaAdapter.
         public MyViewHolder(View itemView) {
             super(itemView);
             imgProfile = (ImageView) itemView.findViewById(R.id.shared_media_row_image);
+
         }
 
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SharedMediaAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_shared_media, parent, false);
-        return new MyViewHolder(view);
+        return new SharedMediaAdapter.MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        System.out.println();
-        Glide.with(context).load(list.get(position).getMsgweburl()).dontAnimate()
-                .transform(new CircleTransform(context))
-                .into(holder.imgProfile);
+
+
+
+        final String timestamp=chatList.get(position).getTimestamp();
+        Glide.with(context).load(chatList.get(position).getMessage()).error(R.drawable.nouser).into(holder.imgProfile);
+
+
+        holder.imgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i=new Intent(context, ShowSharedMedia.class);
+                i.putExtra("image",chatList.get(position).getMessage());
+                i.putExtra("user",chatList.get(position).getCurrentUser());
+                i.putExtra("timestamp",chatList.get(holder.getAdapterPosition()).getTimestamp().toString());
+                i.putExtra("matchId",matchId);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return chatList.size();
     }
+
+
 }

@@ -25,5 +25,9 @@
     <dimen name="card_action_padding">8dp</dimen>
 
     <dimen name="card_stream_bottom_padding">90dp</dimen>
+    <dimen name="shape_button_width">120dp</dimen>
+    <dimen name="shape_button_height">40dp</dimen>
 
+    <dimen name="margin_ten">10dp</dimen>
+    <dimen name="padding_ten">10dp</dimen>
 </resources>

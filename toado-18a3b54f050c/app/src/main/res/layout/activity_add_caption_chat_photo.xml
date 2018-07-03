@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.toado.FirebaseChat.AddCaptionChatPhoto"
+    android:background="#000000">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/nouser"
+        android:id="@+id/addImage"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/vthumb"
+       android:id="@+id/vThumb"
+        android:layout_centerInParent="true"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:padding="20dp"
+       >
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter caption"
+        android:textColor="#ffffff"
+        android:layout_toLeftOf="@+id/send"
+        android:layout_centerVertical="true"
+        android:textColorHint="#ffffff"
+        android:id="@+id/editcaption"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+       android:tint="#ffffff"
+        android:id="@+id/send"
+        android:src="@drawable/ic_arrow_forward_black_24dp"
+        android:background="@color/colorPrimary"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary"
+        android:padding="5dp"
+        android:layout_marginBottom="3dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:id="@+id/back"
+            android:layout_gravity="center_horizontal|center_vertical"/>
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:text="Send"
+            android:id="@+id/tvtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imgcontact"
+            android:ellipsize="end"
+            android:lines="1"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/msg_text_primary"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+</RelativeLayout>

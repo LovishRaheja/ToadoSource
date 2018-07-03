@@ -2,6 +2,7 @@ package com.app.toado.adapter;
 
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -14,21 +15,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.toado.R;
+import com.app.toado.activity.BaseActivity;
+import com.app.toado.activity.ToadoAppCompatActivity;
+import com.app.toado.activity.userprofile.UserProfileAct;
+import com.app.toado.helper.CallHelper;
 import com.app.toado.helper.CircleTransform;
 import com.app.toado.helper.MarshmallowPermissions;
 import com.app.toado.model.CallDetails;
 import com.app.toado.services.SinchCallService;
 import com.app.toado.settings.UserSession;
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
+
+import static com.app.toado.helper.ToadoConfig.DBREF;
+import static com.app.toado.helper.ToadoConfig.DBREF_USER_PROFILES;
 
 
 /**
  * Created by ghanendra on 02/07/2017.
  */
 
-public class CallLogsAdapter extends RecyclerView.Adapter<CallLogsAdapter.MyViewHolder> {
+public class CallLogsAdapter extends RecyclerView.Adapter<CallLogsAdapter.MyViewHolder>{
 
     private List<CallDetails> phnList;
     private Context contx;
@@ -37,6 +48,7 @@ public class CallLogsAdapter extends RecyclerView.Adapter<CallLogsAdapter.MyView
     SinchCallService callserv;
 
     boolean mServiceBound = false;
+    private ToadoAppCompatActivity toadoAppCompatActivity;
 
     private MarshmallowPermissions marshmallowPermissions;
 
@@ -71,6 +83,7 @@ public class CallLogsAdapter extends RecyclerView.Adapter<CallLogsAdapter.MyView
             imgv = (ImageView) view.findViewById(R.id.imgcontact);
             imgCallStatus = (ImageView) view.findViewById(R.id.imgcallstatus);
             relcont = (RelativeLayout) view.findViewById(R.id.relcontact);
+            toadoAppCompatActivity=new ToadoAppCompatActivity();
 
 
             marshmallowPermissions = new MarshmallowPermissions((Activity) view.getContext());
@@ -107,6 +120,7 @@ public class CallLogsAdapter extends RecyclerView.Adapter<CallLogsAdapter.MyView
         final String otherusername=phn.getOtherusrname();
         final String otheruserkey=phn.getCalleruid();
 
+
 //        final String imgurl=phn.getProfpicurl().toString();
 
         if (us.getUserKey().matches(phn.getCalleruid())) {
@@ -127,6 +141,8 @@ public class CallLogsAdapter extends RecyclerView.Adapter<CallLogsAdapter.MyView
         holder.imgCallStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
 
                 if(holder.type.getText().equals("outgoing voice call")||holder.type.getText().equals("incoming voice call")) {
                     Toast.makeText(v.getContext(), "outgoing voice call", Toast.LENGTH_LONG).show();
@@ -186,13 +202,13 @@ public class CallLogsAdapter extends RecyclerView.Adapter<CallLogsAdapter.MyView
 
         }
 
-        if(phn.getCalltype().equals("voice")) {
+       if(phn.getCalltype().equals("voice")) {
             Glide.with(contx).load(phn.getProfpicurl()).dontAnimate()
-                    .transform(new CircleTransform(contx)).error(R.drawable.nouser).into(holder.imgv);
+                    .transform(new CircleTransform(contx)).error(R.drawable.person).into(holder.imgv);
         }
         else{
             Glide.with(contx).load(phn.getProfpicurl()).dontAnimate()
-                    .transform(new CircleTransform(contx)).error(R.drawable.nouser).into(holder.imgv);
+                    .transform(new CircleTransform(contx)).error(R.drawable.person).into(holder.imgv);
 
         }
     }
@@ -218,6 +234,9 @@ public class CallLogsAdapter extends RecyclerView.Adapter<CallLogsAdapter.MyView
             holder.status.setTextColor(colr);
 
         }*/
+
+
+
     }
 
 

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.app.toado.FirebaseChat.FirebaseChat;
 import com.app.toado.R;
 import com.app.toado.activity.userprofile.UserProfileAct;
 import com.app.toado.helper.CircleTransform;
@@ -65,14 +66,14 @@ public class ToadoAdapter extends RecyclerView.Adapter<ToadoAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(final ToadoAdapter.MyViewHolder holder, final int position) {
-        DistanceUser distanceUser = list.get(position);
+        final DistanceUser distanceUser = list.get(position);
         holder.name.setText(distanceUser.getName());
 
 //        System.out.println(distanceUser.getName() + "holder vals" + distanceUser.getKey());
 
 
         Glide.with(context).load(distanceUser.getProfilePicUrl()).dontAnimate()
-                .transform(new CircleTransform(context)).into(holder.userImage);
+                .transform(new CircleTransform(context)).error(R.drawable.nouser).into(holder.userImage);
         //  String imgurl = distanceUser.getProfilePic();
         UserSession us = new UserSession(context);
         //usrkey = us.getUserKey();
@@ -102,8 +103,10 @@ public class ToadoAdapter extends RecyclerView.Adapter<ToadoAdapter.MyViewHolder
             public void onClick(View v) {
                 int pos = holder.getLayoutPosition();
                 System.out.println(list.size() + " posclicked " + pos + "distance user adapter clicked item");
-                Intent in = new Intent(context, UserProfileAct.class);
-                in.putExtra("profiletype", "otherprofile");
+                Intent in = new Intent(context, FirebaseChat.class);
+                in.putExtra("otherusername",distanceUser.getName());
+                in.putExtra("otheruserkey",distanceUser.getKey());
+                in.putExtra("profiletype", distanceUser.getProfilePicUrl());
                 in.putExtra("keyval", list.get(pos).getKey());
                 System.out.println("distance");
                 in.putExtra("distance", String.valueOf(list.get(pos).getDist()));

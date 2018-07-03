@@ -8,27 +8,29 @@
     tools:context=".activity.ToadoContacts.ToadoContacts" >
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/colorPrimary"
+
         android:padding="5dp"
         >
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/ic_arrow_back"
+        android:layout_centerVertical="true"
             android:id="@+id/back"
             android:layout_gravity="center_horizontal|center_vertical"/>
         <TextView
-            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:padding="10dp"
             android:text="Select contact"
             android:id="@+id/tvtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/imgcontact"
+            android:layout_toRightOf="@+id/back"
             android:ellipsize="end"
             android:lines="1"
             android:background="@color/colorPrimary"
@@ -37,7 +39,81 @@
             android:textStyle="bold"
 
             />
-        </LinearLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pb"
+            android:progressTint="@color/white"
+            android:visibility="gone"
+            android:layout_toLeftOf="@+id/search"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/white"
+
+            android:id="@+id/search"
+            android:layout_toLeftOf="@+id/addContact"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_search_holo_light"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/white"
+            android:id="@+id/addContact"
+
+            android:layout_toLeftOf="@+id/optionsMenu"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_person_add_black_24dp"/>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/white"
+            android:id="@+id/optionsMenu"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_more_vert_black_24dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:visibility="gone"
+            android:id="@+id/searchlayout">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/searchIcon"
+                android:src="@drawable/ic_search_holo_light"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/searchRecycler"
+                android:layout_toLeftOf="@+id/cancelSearch"
+                android:layout_toRightOf="@+id/searchIcon"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:id="@+id/cancelSearch"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/ic_action_cancel"/>
+        </RelativeLayout>
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
 
@@ -47,4 +123,11 @@
         android:padding="5dp">
 
     </android.support.v7.widget.RecyclerView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Contacts"
+        android:id="@+id/recent"
+        android:layout_centerInParent="true"
+        android:gravity="center"/></RelativeLayout>
     ,</LinearLayout>

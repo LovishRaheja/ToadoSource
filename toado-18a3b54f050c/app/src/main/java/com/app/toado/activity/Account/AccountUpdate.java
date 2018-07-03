@@ -12,12 +12,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.toado.R;
 import com.app.toado.SplashAct;
 import com.app.toado.activity.BaseActivity;
+import com.app.toado.activity.BlockedUsers.BlockedUsers;
 import com.app.toado.activity.register.MobileRegisterAct;
 import com.app.toado.activity.register.OtpAct;
 import com.app.toado.helper.CircleTransform;
@@ -57,6 +60,7 @@ public class AccountUpdate extends BaseActivity {
     private TextWatcher mNumberTextWatcher;
     private String option;
     ImageView back;
+    RelativeLayout blockedLayout;
     PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
     static {
         // Provide an external logger
@@ -85,6 +89,15 @@ public class AccountUpdate extends BaseActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        blockedLayout=(RelativeLayout)findViewById(R.id.blockedLayout);
+        blockedLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(AccountUpdate.this, BlockedUsers.class);
+                startActivity(i);
             }
         });
 
@@ -192,7 +205,7 @@ public class AccountUpdate extends BaseActivity {
 
                 removeNumber();
 
-goToSplash();
+
                 removeData();
 
 

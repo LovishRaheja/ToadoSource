@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="240dp"
+    android:layout_height="220dp"
     android:id="@+id/distlay"
-    android:layout_margin="5dp"
+
+
     >
 <android.support.v7.widget.CardView
     android:layout_width="match_parent"
@@ -13,18 +14,17 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/round_recycler"
+
         android:orientation="vertical"
         >
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_person_black_24dp"
+            android:src="@drawable/person"
             android:id="@+id/userImage"
-            android:scaleType="centerCrop"
-            android:tint="@color/white"
-           android:background="@color/grey_300"
+            android:scaleType="fitXY"
+
 
         />
 
@@ -41,20 +41,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
              android:padding="2dp"
+                android:layout_gravity="center_vertical"
                >
 
-                <View android:layout_width="10dp"
+                <ImageView android:layout_width="10dp"
                     android:layout_height="10dp"
-
                     android:layout_marginLeft="8dp"
-
+                   android:id="@+id/showOnline"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:background="@drawable/show_online"></View>
+                    android:background="@drawable/not_online"></ImageView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/name"
-android:layout_marginLeft="4dp"
+            android:layout_marginLeft="4dp"
             android:textColor="#ffffff"
             android:textStyle="bold"
             android:textSize="20sp"

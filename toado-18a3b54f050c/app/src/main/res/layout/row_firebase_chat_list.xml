@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/distlay"
+    android:padding="10dp"
+    android:background="@color/white"
+
+    >
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_recycler"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/nouser"
+                android:id="@+id/userImage"
+                android:scaleType="centerCrop"></ImageView>
+
+
+            <ImageView android:layout_width="10dp"
+                android:layout_height="10dp"
+
+                android:id="@+id/showOnline"
+                android:layout_marginRight="5dp"
+              android:layout_marginTop="50dp"
+                android:layout_marginLeft="40dp"
+                android:background="@drawable/show_online"></ImageView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+
+            android:layout_toRightOf="@+id/userImage"
+
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/name"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+             android:textStyle="bold"
+
+                android:textSize="16sp"
+                android:text="Name"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="10dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/recentImage"
+                    android:src="@drawable/ic_person_black_24dp"
+
+                    android:visibility="gone"
+                    android:tint="@color/grey_300"></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/recentMsg"
+            android:layout_marginLeft="5dp"
+            android:text="hi"
+            android:layout_toRightOf="@+id/recentImage"
+            /></RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+        <TextView
+            android:text=""
+            android:id="@+id/timestamp"
+            android:layout_gravity="right"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@+id/author"
+            android:textColor="@color/bg_circle_unread"
+            android:textSize="@dimen/timestamp"  />
+
+        <RelativeLayout
+            android:id="@+id/relunread"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="right"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"
+
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:id="@+id/unread_circle"
+                android:layout_width="@dimen/unread_width_height"
+                android:layout_height="@dimen/unread_width_height"
+                android:layout_centerInParent="true"
+                android:src="@drawable/bg_circle_unread" />
+
+            <TextView
+                android:id="@+id/unreadmsgs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="1"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/icon_unread" />
+        </RelativeLayout></LinearLayout></RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

@@ -26,6 +26,7 @@ public class ShowList extends AppCompatActivity {
     ListView lvContacts;
     ImageView toado,back;
     LinearLayout toadoContacts;
+    String otheruserkey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class ShowList extends AppCompatActivity {
         setContentView(R.layout.activity_show_list);
         listContacts = new ContactFetcher(this).fetchAll();
         lvContacts = (ListView) findViewById(R.id.lvContacts);
-        ContactsAdapter adapterContacts = new ContactsAdapter(this, listContacts);
+        ContactsAdapter adapterContacts = new ContactsAdapter(this, listContacts,otheruserkey);
 
         back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {

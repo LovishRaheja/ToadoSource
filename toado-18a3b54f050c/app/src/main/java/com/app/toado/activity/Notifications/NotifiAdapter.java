@@ -13,7 +13,10 @@ import android.widget.Toast;
 
 import com.app.toado.R;
 
+import com.app.toado.helper.CircleTransform;
 import com.app.toado.settings.UserSession;
+import com.bumptech.glide.Glide;
+
 
 import java.util.ArrayList;
 
@@ -65,8 +68,43 @@ public class NotifiAdapter extends RecyclerView.Adapter<NotifiAdapter.MyViewHold
     @Override
     public void onBindViewHolder(final NotifiAdapter.MyViewHolder holder, int position) {
 
+
         final NotifiDetails phn = list.get(position);
         holder.title.setText(phn.getOtherusrname().toString());
+       // Toast.makeText(context, phn.getProfpicurl(), Toast.LENGTH_SHORT).show();
+
+       /**DatabaseReference retreiveDetails = DBREF_USER_PROFILES.child(phn.getOtherusrkey());
+        retreiveDetails.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Toast.makeText(context, dataSnapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+*/
+
+        Glide.with(context).load(phn.getProfpicurl()).dontAnimate()
+                .transform(new CircleTransform(context)).error(R.drawable.nouser).into(holder.profilePic);
 
         us = new UserSession(context);
 

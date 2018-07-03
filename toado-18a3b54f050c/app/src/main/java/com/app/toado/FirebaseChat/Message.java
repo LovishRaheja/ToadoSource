@@ -7,4 +7,5 @@ public class Message {
     public String idReceiver;
     public String text;
     public long timestamp;
+
 }

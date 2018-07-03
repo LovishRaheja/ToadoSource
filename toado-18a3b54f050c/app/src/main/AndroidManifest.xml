@@ -4,6 +4,7 @@
     package="com.app.toado">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -24,6 +25,13 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_USER_DICTIONARY" />
+    <uses-permission android:name="android.permission.WRITE_USER_DICTIONARY" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
+    <uses-permission android:name="android.permission.PERSISTENT_ACTIVITY" />
+    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".ToadoApplication"
@@ -31,7 +39,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:theme="@style/ChatTheme"
         tools:replace="android:theme">
         <activity
             android:name=".SplashAct"
@@ -50,6 +58,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.register.OtpAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Contact.SendContact"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.register.MobileRegisterAct"
@@ -83,6 +94,12 @@
 
         <activity
             android:name=".activity.videocalls.VideoCallScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TinderChat.Matches.MatchesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TinderChat.Chat.ChatActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.videocalls.IncomingVideoCallScreenActivity"
@@ -136,10 +153,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".activity.chat.MapsActivity"
-            android:label="@string/title_activity_maps" />
-
         <service android:name=".services.SinchCallService" />
 
         <activity
@@ -175,7 +188,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity android:name=".activity.chat.MediaPreviewActivity" />
-        <activity android:name=".activity.chat.StarMessageActivity" />
+        <activity android:name=".TinderChat.StarredMessages.StarMessageActivity" />
         <activity android:name=".activity.userdetail.UserDetail" />
         <activity android:name=".activity.SharedItems.SharedItemsActivity" />
         <activity android:name=".activity.Account.AccountAct" />
@@ -204,7 +217,62 @@
         <activity android:name=".activity.Account.VerifyNumber" />
         <activity android:name=".activity.ToadoContacts.ToadoContacts" />
         <activity android:name=".activity.GroupChat.AddGroup" />
-        <activity android:name=".FirebaseChat.FirebaseChat"></activity>
+        <activity android:name=".FirebaseChat.FirebaseChat" />
+        <activity
+            android:name=".FirebaseChat.ShareLocation.MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".FirebaseChat.ForwardChatMessage" />
+        <activity android:name=".FirebaseChat.OpenChatPhoto" />
+        <activity android:name=".FirebaseChat.AddCaptionChatPhoto" />
+        <activity android:name=".activity.GroupChat.GroupChatActivity" />
+        <activity android:name=".activity.GroupChat.GroupDetail" />
+        <activity android:name=".activity.ToadoContacts.ToadoContactsHelp" />
+        <activity android:name=".activity.BlockedUsers.BlockedUsers" />
+        <activity android:name=".activity.Invite.Invite" />
+        <activity android:name=".activity.Invite.InviteFacebook" />
+        <activity android:name=".activity.Invite.InviteContacts" />
+        <activity android:name=".activity.Invite.InviteCalls" />
+        <activity android:name=".activity.AppSettings.AppSettings" />
+        <activity android:name=".TinderChat.ForwardChat.ForwardChat" />
+        <activity android:name=".TinderChat.Chat.ChatContacts.ChatContacts" />
+        <activity android:name=".TinderChat.Chat.ChatContacts.ShowContact" />
+
+        <receiver
+            android:name=".activity.PushReciever"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="pushy.me" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="me.pushy.sdk.receivers.PushyUpdateReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Pushy Boot Receiver -->
+        <!-- Do not modify - internal BroadcastReceiver that restarts the listener service -->
+        <receiver
+            android:name="me.pushy.sdk.receivers.PushyBootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Pushy Socket Service -->
+        <!-- Do not modify - internal socket service -->
+        <service android:name="me.pushy.sdk.services.PushySocketService" />
+
+        <activity android:name=".fragments.sharedItems.ShowSharedMedia" />
+        <activity android:name=".activity.GroupChat.GroupShareLocation" />
+        <activity android:name=".activity.GroupChat.GroupChatContacts.GroupChatContact" />
+        <activity android:name=".activity.Help" />
+        <activity android:name=".activity.AppInfo"></activity>
     </application>
 
 </manifest>

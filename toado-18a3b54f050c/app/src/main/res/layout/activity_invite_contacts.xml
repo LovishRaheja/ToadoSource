@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.app.toado.activity.Invite.InviteContacts">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary"
+        android:padding="5dp"
+        android:id="@+id/topBar"
+       >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:id="@+id/back"
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal|center_vertical"/>
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:text="Contacts"
+            android:id="@+id/tvtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imgcontact"
+            android:ellipsize="end"
+            android:lines="1"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/msg_text_primary"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#5b74a8"
+        android:id="@+id/frag"
+        android:layout_below="@+id/topBar">
+
+        <TextView
+            android:id="@+id/srchHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search.."
+            android:textSize="16dp"
+            android:textColor="#000"
+            android:layout_gravity="center" />
+
+        <SearchView
+            android:background="#5b74a8"
+            android:padding="8dp"
+            android:id="@+id/searchView"
+            android:drawableLeft="@android:drawable/ic_menu_search"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:layout_gravity="right"
+            android:layout_height="wrap_content"></SearchView>
+    </FrameLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/frag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/contacts_list"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_button"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:id="@+id/inviteContact"
+        android:text="Send Invite"/>
+
+
+</RelativeLayout>

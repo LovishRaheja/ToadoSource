@@ -4,13 +4,15 @@
     android:id="@+id/chatlay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E7E4DF"
+    android:background="@drawable/back"
     android:orientation="vertical">
+
+
 
     <LinearLayout
         android:id="@+id/rel1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimary"
@@ -32,7 +34,8 @@
             android:id="@+id/user_title_lay"
             android:layout_width="190dp"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="5dp">
 
             <ImageView
                 android:id="@+id/icon_profile"
@@ -43,12 +46,152 @@
                 android:layout_weight="0"
                 android:background="@drawable/bg_circle" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/icon_profile"
+                android:layout_weight="0"
+                android:gravity="center_vertical"
+                android:text="Lovish"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDistance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/icon_profile"
+                    android:layout_weight="0"
+                    android:gravity="center_vertical"
+                    android:text="0.0 miles away"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                     />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp">
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right|center_vertical"
+            android:gravity="right|center_vertical">
+
+            <ImageButton
+                android:id="@+id/chatSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="0"
+                android:background="#00ffffff"
+                android:src="@drawable/ic_action_action_search" />
+
+
+        <ImageButton
+            android:id="@+id/imgvideo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0"
+
+            android:background="#00ffffff"
+            android:src="@drawable/iconvidewhite" />
+
+        <ImageButton
+            android:id="@+id/imgcall"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0"
+            android:background="#00ffffff"
+
+            android:src="@drawable/iconphonewhite" />
+        </LinearLayout>
+        </RelativeLayout>
+
+
+        <ImageButton
+            android:id="@+id/imgsettings"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0"
+
+            android:background="#00ffffff"
+            android:src="@drawable/icondots"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/longClick"
+
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:padding="7dp"
+        android:visibility="gone"
+        android:weightSum="10">
+
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:background="@drawable/rippleffect"
+            android:onClick="onBack"
+            android:padding="5dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <LinearLayout
+
+            android:layout_width="190dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="5dp">
+
+            <ImageView
+
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imgback"
+                android:layout_weight="0"
+                android:background="@drawable/bg_circle" />
+
+            <TextView
+
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/icon_profile"
                 android:layout_weight="0"
                 android:gravity="center_vertical"
@@ -59,33 +202,38 @@
 
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/imgvideo"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="0"
-            android:background="#00ffffff"
-            android:src="@drawable/iconvidewhite" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp">
 
-        <ImageButton
-            android:id="@+id/imgcall"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="0"
-            android:background="#00ffffff"
-            android:src="@drawable/iconphonewhite" />
 
-        <ImageButton
-            android:id="@+id/imgsettings"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="0"
-            android:background="#00ffffff"
-            android:src="@drawable/icondots" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="right|center_vertical"
+                android:gravity="right|center_vertical">
+
+                <ImageButton
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0"
+                    android:background="#00ffffff"
+                    android:src="@drawable/iconvidewhite" />
+
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+
 
     </LinearLayout>
 
@@ -101,21 +249,241 @@
     <!--</LinearLayout>-->
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_recycler_view"
+        android:id="@+id/recyclerChat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/relcomment"
         android:layout_below="@+id/rel1"
-        android:background="@color/whitetranslucent"
-        android:padding="10dp" />
+
+        />
 
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/attachmentpopup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/relcomment"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/attachmentdrawer"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:translationZ="1dp"
+        android:visibility="gone"
+        android:weightSum="2">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="3">
 
+            <ImageButton
+                android:id="@+id/buttondocs"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:clickable="true"
+                android:foreground="@drawable/rippleffect"
+                android:scaleType="fitCenter"
+                android:src="@drawable/iconpickdocs" />
 
+            <ImageButton
+                android:id="@+id/takephoto"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:clickable="true"
+                android:foreground="@drawable/rippleffect"
+                android:scaleType="fitCenter"
+                android:src="@drawable/iconpickcamera" />
+
+            <ImageButton
+                android:id="@+id/galleryattach"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:clickable="true"
+                android:foreground="@drawable/rippleffect"
+                android:scaleType="fitCenter"
+                android:src="@drawable/iconpickgallery" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+
+            android:weightSum="3">
+
+            <ImageButton
+                android:id="@+id/songAttach"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:clickable="true"
+                android:foreground="@drawable/rippleffect"
+                android:scaleType="fitCenter"
+                android:src="@drawable/iconpickaudio" />
+
+            <ImageButton
+                android:id="@+id/locAttach"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:clickable="true"
+                android:foreground="@drawable/rippleffect"
+                android:scaleType="fitCenter"
+                android:src="@drawable/iconpickloc" />
+
+            <ImageButton
+                android:id="@+id/contAttach"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:clickable="true"
+                android:foreground="@drawable/rippleffect"
+                android:scaleType="fitCenter"
+                android:src="@drawable/iconpickcontacts" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/attachmentpopup2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/attachmentdrawer"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:translationZ="1dp"
+        android:visibility="gone"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <ImageButton
+                android:id="@+id/buttondocs2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:clickable="true"
+                android:foreground="@drawable/rippleffect"
+                android:scaleType="fitCenter"
+                android:src="@drawable/iconpickdocs" />
+
+            <ImageButton
+                android:id="@+id/takephoto2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:clickable="true"
+                android:foreground="@drawable/rippleffect"
+                android:scaleType="fitCenter"
+                android:src="@drawable/iconpickcamera" />
+
+            <ImageButton
+                android:id="@+id/galleryattach2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:clickable="true"
+                android:foreground="@drawable/rippleffect"
+                android:scaleType="fitCenter"
+                android:src="@drawable/iconpickgallery" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <ImageButton
+                android:id="@+id/songAttach2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:clickable="true"
+                android:foreground="@drawable/rippleffect"
+                android:scaleType="fitCenter"
+                android:src="@drawable/iconpickaudio" />
+
+            <ImageButton
+                android:id="@+id/locAttach2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:clickable="true"
+                android:foreground="@drawable/rippleffect"
+                android:scaleType="fitCenter"
+                android:src="@drawable/iconpickloc" />
+
+            <ImageButton
+                android:id="@+id/contAttach2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:clickable="true"
+                android:foreground="@drawable/rippleffect"
+                android:scaleType="fitCenter"
+                android:src="@drawable/iconpickcontacts" />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/relcomment"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -129,6 +497,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1dip"
             android:layout_weight="5"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/msgeditext"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -146,12 +515,24 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1.0"
+                    android:hint="Type a message"
+                   android:elevation="10dp"
                     android:backgroundTint="@android:color/transparent"
                     android:maxLines="6"
                     android:paddingLeft="8dp"
                     android:paddingRight="6dp"
                     android:scrollbars="vertical"
                     android:text="" />
+                <ImageButton
+                    android:id="@+id/attachment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="#00ffffff"
+                    android:clickable="true"
+                    android:layout_gravity="center_vertical"
+                    android:foreground="@drawable/rippleffect"
+                    android:src="@drawable/iconattachment" />
             </LinearLayout>
 
 
@@ -173,6 +554,59 @@
             app:srcCompat="@drawable/iconsend" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+
+        android:text="You have already blocked the user. Please unblock to chat"
+        android:layout_alignParentBottom="true"
+        android:padding="15dp"
+        android:gravity="center"
+        android:id="@+id/blockText"
+      android:visibility="gone"
+        android:background="@color/radial_gray_light"
+        android:textSize="16dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorPrimary"
+       android:padding="7dp"
+
+
+        android:visibility="gone"
+
+        android:id="@+id/searchlayout">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/searchIcon"
+            android:tint="@color/white"
+            android:src="@drawable/ic_action_action_search"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchRecycler"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/white"
+            android:layout_toLeftOf="@+id/cancelSearch"
+            android:layout_toRightOf="@+id/searchIcon"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:tint="@color/white"
+            android:id="@+id/cancelSearch"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ic_cancel_black_24dp"/>
+    </RelativeLayout>
 
 
 

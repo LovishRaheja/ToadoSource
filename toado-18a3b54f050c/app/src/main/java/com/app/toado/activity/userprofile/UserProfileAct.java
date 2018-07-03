@@ -1,6 +1,7 @@
 package com.app.toado.activity.userprofile;
 
 import android.content.ComponentName;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -8,8 +9,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.app.toado.FirebaseChat.FirebaseChat;
 import com.app.toado.R;
+import com.app.toado.TinderChat.Chat.ChatActivity;
 import com.app.toado.activity.BaseActivity;
 import com.app.toado.helper.ChatHelper;
 import com.app.toado.helper.CircleTransform;
@@ -32,6 +36,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import static com.app.toado.helper.ToadoConfig.DBREF;
 import static com.app.toado.helper.ToadoConfig.DBREF_USER_PROFILES;
 
@@ -43,6 +52,7 @@ public class UserProfileAct extends BaseActivity {
     private TextView tvname, tvage, tvdistance, tvinterests,reqsent;
     private ImageView imgvUsrprof;
     ImageView btnchat,btncall;
+    ImageView back;
 
      String name,profilePicUrl;
     private String usrkey = "nil";
@@ -68,6 +78,14 @@ public class UserProfileAct extends BaseActivity {
         setContentView(R.layout.activity_user_profile);
 
         marshmallowPermissions = new MarshmallowPermissions(this);
+
+        back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         if (!marshmallowPermissions.checkPermissionForCalls())
             marshmallowPermissions.requestPermissionForCalls();
@@ -97,10 +115,10 @@ public class UserProfileAct extends BaseActivity {
         if (profiletype.matches("otherprofile")) {
             usrkey = getIntent().getStringExtra("keyval");
             dist = getIntent().getStringExtra("distance");
-            btncall.setVisibility(View.VISIBLE);
-            btnchat.setVisibility(View.VISIBLE);
-            btnvid.setVisibility(View.VISIBLE);
-            btnemail.setVisibility(View.VISIBLE);
+          //  btncall.setVisibility(View.VISIBLE);
+           // btnchat.setVisibility(View.GONE);
+            //btnvid.setVisibility(View.VISIBLE);
+            //btnemail.setVisibility(View.VISIBLE);
         } else {
             UserSession us = new UserSession(this);
             usrkey = us.getUserKey();
@@ -126,7 +144,27 @@ public class UserProfileAct extends BaseActivity {
         btnchat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChatHelper.goToChatActivity(UserProfileAct.this,usrkey,otherusername,imgurl);
+
+                Intent intent = new Intent(UserProfileAct.this, ChatActivity.class);
+                Bundle b = new Bundle();
+                b.putString("matchId", usrkey.toString());
+                b.putString("name",otherusername.toString());
+
+                intent.putExtras(b);
+               startActivity(intent);
+             //   ChatHelper.goToChatActivity(UserProfileAct.this,usrkey,otherusername,imgurl);
+            }
+        });
+
+        btnemail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i=new Intent(UserProfileAct.this,ChatActivity.class);
+                i.putExtra("matchId",usrkey);
+                i.putExtra("name",otherusername);
+                i.putExtra("profiletype",imgurl);
+                startActivity(i);
             }
         });
 
@@ -204,13 +242,52 @@ public class UserProfileAct extends BaseActivity {
                     User u = User.parse(dataSnapshot);
                     imgurl = u.getProfpicurl();
                     Glide.with(UserProfileAct.this).load(imgurl).into(imgvUsrprof);
+
                     System.out.println(u.getProfpicurl() + "user key from getuserlocaldata userprof act" + u.getName());
                     getlikes(k);
                     otherusername = u.getName();
                     tvname.setText(otherusername);
-                    tvage.setText(u.getDob());
+                    Calendar currentDate = Calendar.getInstance();
+
+                    SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+                    Date birthdate = null;
+
+                    try {
+                        birthdate = myFormat.parse(u.getDob().lastIndexOf("/")+"-"+u.getDob().substring(0,1)+"-"+u.getDob().substring(u.getDob().indexOf("/")+1,u.getDob().indexOf("/")+2));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    Long time= currentDate.getTime().getTime() / 1000 - birthdate.getTime() / 1000;
+
+                    int years = Math.round(time) / 31536000;
+
+
+                    int age;
+                    final Calendar calenderToday = Calendar.getInstance();
+                    int currentYear = calenderToday.get(Calendar.YEAR);
+                    int currentMonth = 1 + calenderToday.get(Calendar.MONTH);
+                    int todayDay = calenderToday.get(Calendar.DAY_OF_MONTH);
+
+                    age = currentYear - Integer.valueOf(u.getDob().substring(u.getDob().lastIndexOf("/")+1));
+                   // Toast.makeText(UserProfileAct.this,String.valueOf(age), Toast.LENGTH_SHORT).show();
+                  /**  if(DOBmonth > currentMonth) {
+                        --age;
+                    } else if(DOBmonth == currentMonth) {
+                        if(DOBday > todayDay){
+                            --age;
+                        }
+                    }*/
+
+
+                    tvage.setText(", "+String.valueOf(age));
                     tvdistance.setText(dist + " miles away ");
-                    tvinterests.setText(u.getUserLikes());
+                    if(u.getUserLikes().equals(""))
+                    {
+                        tvinterests.setText("No Interests Found");
+                    }else
+                        tvinterests.setText(u.getUserLikes());
                 } else
                     System.out.println("no snapshot exists userprof act");
             }
@@ -399,6 +476,13 @@ public class UserProfileAct extends BaseActivity {
                             reqsent.setVisibility(View.GONE);
                             btnlay1.setVisibility(View.VISIBLE);
                             //btnlay2.setVisibility(View.VISIBLE);
+                        }
+                        if(dataSnapshot.getValue().equals("sent"))
+                        {
+                            reqlay.setVisibility(View.GONE);
+                            reqsent.setVisibility(View.VISIBLE);
+
+                            btnlay1.setVisibility(View.GONE);
                         }
 
                     }

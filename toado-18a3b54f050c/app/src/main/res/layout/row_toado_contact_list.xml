@@ -22,10 +22,10 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/ic_person_black_24dp"
+                android:src="@drawable/nouser"
                 android:id="@+id/userImage"
                 android:scaleType="centerCrop"
-                android:tint="@color/white"
+
 
 
                 />

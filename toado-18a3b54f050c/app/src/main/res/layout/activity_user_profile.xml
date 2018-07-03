@@ -4,17 +4,51 @@
     android:layout_height="match_parent">
 
 
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent"
         android:gravity="center">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary"
+            android:padding="5dp"
+           >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_back"
+                android:id="@+id/back"
+                android:padding="10dp"
+                android:layout_gravity="center_horizontal|center_vertical"/>
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:padding="10dp"
+                android:text="Profile"
+                android:id="@+id/tvtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imgcontact"
+                android:ellipsize="end"
+                android:lines="1"
+                android:background="@color/colorPrimary"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/msg_text_primary"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
 
         <ImageView
             android:id="@+id/imgprofile"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="300dp"
             android:layout_below="@+id/topbar"
             android:scaleType="fitCenter"
             android:foregroundGravity="center"
@@ -22,30 +56,37 @@
             android:background="@color/black"
             android:src="@drawable/ic_person_black_24dp" />
 
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="left"
+        android:gravity="left">
 
         <TextView
             android:id="@+id/tvname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-        android:layout_gravity="left"
+
             android:textSize="22sp"
             android:textStyle="bold"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
-            android:text="Loading Data..." />
+             />
+
 
 
         <TextView
             android:id="@+id/tvage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv2"
-            android:layout_gravity="left"
-            android:textSize="16sp"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/tv1"
-            android:text=" 20yrs" />
+            android:layout_marginTop="30dp"
+            android:textSize="22sp"
+            android:textStyle="bold"
+
+
+            />
+        </LinearLayout>
         <TextView
             android:id="@+id/tvdist"
             android:layout_width="wrap_content"
@@ -72,6 +113,7 @@
                 android:layout_height="40dp"
                 android:layout_below="@+id/tvage"
                 android:text="Send Request"
+
                 android:background="@drawable/shape_button"
                 android:textColor="#ffffff"
                 />
@@ -85,6 +127,7 @@
             android:visibility="gone"
             android:id="@+id/reqsent"
             android:textSize="20sp"
+
            />
 
 
@@ -96,17 +139,20 @@
             android:layout_gravity="center"
             android:gravity="center_horizontal"
             android:id="@+id/btnlay1"
-android:visibility="gone"
+
+            android:visibility="gone"
             android:layout_margin="10dp">
 
         <ImageView
             android:id="@+id/imgvideo"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_below="@+id/tvage"
-            android:src="@drawable/videoprofile"
+            android:src="@drawable/ic_video_call_black_24dp"
             android:text="Video"
-
+android:background="@drawable/iconback"
+            android:padding="15dp"
+            android:tint="@color/colorPrimary"
             android:layout_marginRight="10dp"
             android:textColor="#ffffff"
 
@@ -114,11 +160,13 @@ android:visibility="gone"
 
         <ImageView
             android:id="@+id/imgcall"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginRight="10dp"
-        android:src="@drawable/callprofile"
-
+        android:src="@drawable/iccall"
+            android:padding="20dp"
+            android:background="@drawable/iconback"
+            android:tint="@color/colorPrimary"
             android:textColor="#ffffff"
             android:text="Call"
           />
@@ -127,26 +175,31 @@ android:visibility="gone"
 
         <ImageView
             android:id="@+id/imgchat"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_below="@+id/tvage"
             android:layout_toRightOf="@+id/imgcall"
             android:textColor="#ffffff"
+            android:visibility="gone"
+            android:tint="@color/colorPrimary"
             android:layout_marginRight="10dp"
            android:src="@drawable/msgprofile"
             android:text="Chat"
+
 
           />
 
         <ImageView
             android:id="@+id/imgemail"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_below="@+id/tvage"
             android:layout_toRightOf="@+id/imgchat"
-           android:src="@drawable/mailprofile"
+           android:src="@drawable/icmsg"
             android:text="Email"
-
+            android:padding="20dp"
+            android:background="@drawable/iconback"
+            android:tint="@color/colorPrimary"
             android:textColor="#ffffff"
             />
 

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/distlay"
+    android:padding="10dp"
+    android:background="@color/white"
+
+    >
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_recycler"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_person_black_24dp"
+                android:id="@+id/userImage"
+                android:scaleType="centerCrop"
+                android:tint="@color/white"
+
+
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/name"
+                android:layout_marginLeft="30dp"
+                android:textColor="#000000"
+                android:layout_gravity="center_vertical"
+
+                android:textSize="16sp"
+                android:text="Name"/>
+
+
+
+
+
+        </LinearLayout>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_margin="10dp"
+            android:id="@+id/checkAddPeople"
+            />
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

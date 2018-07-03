@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="#EEEEEE"
         android:weightSum="1">
 
         <LinearLayout
@@ -51,7 +52,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="240dp">
             <ImageView
                 android:id="@+id/user_detail_image"
                 android:layout_width="match_parent"
@@ -69,17 +70,18 @@
                 android:id="@+id/user_detail_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Akshat Jain"
+                android:text=""
+
                 android:layout_gravity="bottom"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:gravity="bottom"
-                android:paddingBottom="10dp"
+                android:paddingBottom="5dp"
                 android:layout_alignParentLeft="true"
 
                 android:textColor="@color/white"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-               android:layout_marginBottom="24dp"
+               android:layout_marginBottom="15dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true" />
 
@@ -91,27 +93,111 @@
                 android:layout_marginTop="25dp"
                 android:tint="#ffffff"
                 android:id="@+id/sendProfile"
+                android:visibility="gone"
                 android:layout_marginRight="10dp"/>
 
         </RelativeLayout>
 
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:text="About and phone number"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:id="@+id/phoneNumber"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/black"
+                        android:text="+917009858650"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="Mobile"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:padding="10dp">
+
+
+                <ImageButton
+                    android:id="@+id/imgvideo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0"
+                android:background="@color/white"
+                    android:tint="@color/colorPrimary"
+                    android:src="@drawable/iconvidewhite" />
+
+                <ImageButton
+                    android:id="@+id/imgcall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="0"
+                    android:background="@color/white"
+                    android:tint="@color/colorPrimary"
+                    android:src="@drawable/iconphonewhite" />
+            </LinearLayout>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+           android:layout_margin="5dp"
+            android:background="#EEEEEE"></View>
         <RelativeLayout
             android:id="@+id/media_title_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           android:layout_marginTop="10dp"
-            android:layout_margin="10dp">
+
+            android:elevation="2dp"
+            android:padding="20dp"
+            android:background="@color/white"
+          >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Media"
+
+                android:textColor="@color/colorPrimary"
                 android:layout_centerVertical="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10"
+                android:id="@+id/mediaCount"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="25dp" />
@@ -126,26 +212,21 @@
 
         </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/user_detail_media_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.85" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_margin="20dp"
-            android:background="@color/grey_300"></View>
 
 
 
-        <LinearLayout
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="10dp"
-            android:background="@color/white">
+
+            android:padding="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -154,27 +235,33 @@
 
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:textSize="20sp"/>
+                android:textSize="16sp"/>
 
-            <ToggleButton
-                android:layout_marginLeft="20dp"
+            <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+
+                android:layout_marginRight="20dp"
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_margin="20dp"
+           android:layout_marginLeft="20dp"
+
+            android:padding="10dp"
             android:background="@color/grey_300"></View>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+
+
+            android:padding="20dp"
+            android:background="@color/white"
             android:orientation="vertical" >
 
         <TextView
@@ -198,14 +285,17 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_margin="20dp"
-            android:background="@color/grey_300"></View>
+            android:layout_margin="10dp"
+            android:background="#EEEEEE"></View>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal" >
+
+            android:padding="10dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:id="@+id/blockLayout">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -219,13 +309,47 @@
                 android:text="Block"
                 android:textColor="@color/bpDarker_red"
                 android:textSize="20dp"
-                android:layout_margin="10dp"
+
                 android:padding="10dp"
 
+                android:id="@+id/block"
                 android:paddingLeft="10dp"/>
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_margin="10dp"
+            android:background="#EEEEEE"></View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:padding="10dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+           >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:tint="@color/bpDarker_red"
+                android:src="@drawable/ic_thumb_down_black_24dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Report Spam"
+                android:textColor="@color/bpDarker_red"
+                android:textSize="20dp"
+
+                android:padding="10dp"
+
+
+                android:paddingLeft="10dp"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

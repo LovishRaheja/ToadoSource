@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.toado.R;
 import com.app.toado.settings.UserSession;
@@ -64,11 +65,14 @@ public class RequestFragment extends Fragment {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 RequestDetails cd = RequestDetails.parse(dataSnapshot);
                 mAdapter.notifyDataSetChanged();
-                if(dataSnapshot.child("Status").getValue().equals("accepted"))
-                {
-                    list.remove(cd);
-                    mAdapter.notifyDataSetChanged();
+                if(dataSnapshot.child("Status").exists()) {
+                    if (dataSnapshot.child("Status").getValue().equals("accepted")) {
+                        list.remove(cd);
+                        mAdapter.notifyDataSetChanged();
 
+                    }
+                }else{
+                    Toast.makeText(getContext(), "No recent requests", Toast.LENGTH_SHORT).show();
                 }
 
 

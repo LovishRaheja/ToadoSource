@@ -96,7 +96,7 @@
         <ImageView
             android:textColor="@color/white"
 
-            android:src="@drawable/endcall"
+            android:src="@drawable/rejectcall"
             android:id="@+id/hangupButton"
             android:layout_width="130dp"
             android:layout_height="130dp"

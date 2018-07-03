@@ -5,9 +5,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.app.toado.RivChat.ui.FriendsFragment;
 import com.app.toado.fragments.Settings.SettingsFragment;
 import com.app.toado.fragments.call.CallFragment;
 import com.app.toado.fragments.chat.ChatFragment;
+import com.app.toado.fragments.chat.FirebaseChatFragment;
 import com.app.toado.fragments.groupchat.GroupchatFragment;
 import com.app.toado.fragments.home.HomeFragment;
 
@@ -31,7 +33,7 @@ public class MainpagerAdapter extends FragmentStatePagerAdapter {
                 fragment = HomeFragment.newInstance();
                 break;
             case Chat:
-                fragment = ChatFragment.newInstance();
+                fragment = com.app.toado.TinderChat.ChatFragment.ChatFragment.newInstance();
                 break;
             case GroupChats:
                 fragment = GroupchatFragment.newInstance();

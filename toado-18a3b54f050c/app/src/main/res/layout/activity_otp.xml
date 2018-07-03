@@ -42,12 +42,13 @@
             android:layout_gravity="center">
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/inputContainer"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:orientation="vertical"
-                android:visibility="gone">
+                >
 
                 <TextView
                     android:id="@+id/enterToken"
@@ -68,7 +69,7 @@
                     android:imeOptions="actionDone"
                     android:digits="0123456789"
                     android:id="@+id/inputCode"
-                    android:layout_width="170dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
@@ -78,14 +79,15 @@
                     android:visibility="gone"
                     android:maxLines="1"
                     android:maxLength="15"
+                    android:gravity="center"
                     android:imeOptions="actionDone"
                     android:digits="+0123456789"
                     android:id="@+id/inputCodeCall"
-                    android:layout_width="170dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
-                    android:inputType="number" />
+                    android:inputType="phone" />
 
                 <Button
                     android:id="@+id/codeInputButton"
@@ -142,6 +144,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:paddingBottom="20dp"
+           android:visibility="invisible"
             android:text="@string/inprogress"
             android:textAllCaps="true"
             android:textSize="22sp" />

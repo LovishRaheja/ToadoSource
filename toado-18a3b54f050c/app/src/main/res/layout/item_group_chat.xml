@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="right"
+
+        android:id="@+id/container">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:paddingBottom="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5sp"
+                    android:textColor="@color/colorPrimary"
+                    android:visibility="gone"
+                    android:text="Text"
+                    android:id="@+id/name"/>
+
+            <TextView
+                android:paddingBottom="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+
+                android:text="Text"
+                android:id="@+id/message"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textTime"
+                android:textSize="12dp"
+                android:padding="5dp"
+                android:layout_marginTop="12dp"/>
+
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/tick"
+                android:layout_gravity="bottom"
+                android:src="@drawable/ic_not_sent_black_24dp"
+                android:tint="@color/grey_300"
+
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                /></LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="right"
+
+        android:id="@+id/locLayout">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chatbubbleout"
+            android:padding="10dp"
+            android:id="@+id/locLinear"
+            android:orientation="vertical">
+            <ImageView
+                android:src="@drawable/chatmap"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:id="@+id/chatMap"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:background="@color/black"
+                android:layout_marginRight="5dp"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/locTime"
+                android:textSize="12dp"
+                android:padding="5dp"
+                android:gravity="right"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="bottom|right"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/locTick"
+            android:layout_gravity="bottom"
+            android:src="@drawable/ic_not_sent_black_24dp"
+            android:tint="@color/grey_300"
+            android:layout_alignParentRight="true"
+
+            />
+
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/docLayout"
+        android:layout_gravity="right"
+        android:gravity="right"
+
+        android:layout_margin="10dp"
+
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chatbubbleout"
+            android:orientation="horizontal"
+            android:id="@+id/docLinear"
+
+            >
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:id="@+id/docImage"
+                android:src="@drawable/docsimage"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="File Name"
+
+                android:textSize="12dp"
+                android:id="@+id/docName"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_margin="10dp"
+                android:layout_gravity="center_vertical"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/docTick"
+
+                android:padding="10dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/ic_not_sent_black_24dp"
+                android:tint="@color/grey_300"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/docTime"
+            android:textSize="12dp"
+            android:padding="5dp"
+            android:layout_gravity="bottom|right"/>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/conLayout"
+        android:layout_gravity="right"
+        android:gravity="right"
+
+        android:layout_margin="10dp"
+
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chatbubbleout"
+            android:orientation="horizontal"
+            android:id="@+id/conLinear"
+
+            >
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:id="@+id/conImage"
+                android:src="@drawable/ic_person_black_24dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textSize="14dp"
+                    android:id="@+id/conName"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+
+                    android:layout_gravity="center_vertical"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Number"
+
+                    android:textSize="14dp"
+                    android:id="@+id/conNumber"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+
+                    android:layout_gravity="center_vertical"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/conTime"
+            android:textSize="12dp"
+            android:padding="5dp"
+            android:layout_gravity="bottom"
+
+            />
+
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/conTick"
+
+            android:layout_gravity="bottom"
+            android:src="@drawable/ic_not_sent_black_24dp"
+            android:tint="@color/grey_300"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

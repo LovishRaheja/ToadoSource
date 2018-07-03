@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -52,6 +53,8 @@ public class MobileRegisterAct extends ToadoBaseActivity {
     private TextWatcher mNumberTextWatcher;
     private String option;
     ImageView back;
+    CheckBox checkTerms;
+    TextView termsText;
     PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
     static {
         // Provide an external logger
@@ -89,14 +92,25 @@ public class MobileRegisterAct extends ToadoBaseActivity {
             finish();
         }
 
-
+        checkTerms=(CheckBox)findViewById(R.id.checkTerms);
+        termsText=(TextView)findViewById(R.id.termsText);
 
         textsign=(TextView)findViewById(R.id.textsign);
         ccp = (CountryCodePicker) findViewById(R.id.ccp1);
         Intent intent = getIntent();
         if (intent != null) {
             option = intent.getStringExtra("method");
+            if (option.equals("signin")) {
+                textsign.setText("Sign In");
+                checkTerms.setVisibility(View.GONE);
+                termsText.setVisibility(View.GONE);
+            }
+            else{
+                textsign.setText("Sign Up");
+            }
         }
+
+
         mPhoneNumber = (EditText) findViewById(R.id.phoneNumber);
 
         final CloseKeyboard cb = new CloseKeyboard();
@@ -117,23 +131,56 @@ public class MobileRegisterAct extends ToadoBaseActivity {
             @Override
             public void onClick(View v) {
                 System.out.println("sms button clicked");
-
-
-
+                if (option.equals("signup")) {
+                    if (checkTerms.isChecked()) {
+                        mSmsButton.setEnabled(true);
+                        mFlashCallButton.setEnabled(true);
+                        if (!mPhoneNumber.getText().toString().trim().matches(""))
+                            checkmeth("sms");
+                        else
+                            Toast.makeText(MobileRegisterAct.this, "Please enter a valid mobile number", Toast.LENGTH_SHORT).show();
+                    } else if (!checkTerms.isChecked()) {
+                        mSmsButton.setEnabled(false);
+                        mFlashCallButton.setEnabled(false);
+                        Toast.makeText(MobileRegisterAct.this, "Please agree to above terms and conditions before proceeding", Toast.LENGTH_SHORT).show();
+                        mSmsButton.setEnabled(true);
+                        mFlashCallButton.setEnabled(true);
+                    }
+                }else if (option.equals("signin")) {
                     if (!mPhoneNumber.getText().toString().trim().matches(""))
                         checkmeth("sms");
-                else
-                    Toast.makeText(MobileRegisterAct.this, "Please enter a valid mobile number", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(MobileRegisterAct.this, "Please enter a valid mobile number", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         mFlashCallButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("flash button clicked");
-                if (!mPhoneNumber.getText().toString().trim().matches(""))
-                    checkmeth("flashcall");
-                else
-                    Toast.makeText(MobileRegisterAct.this, "Please enter a valid mobile number", Toast.LENGTH_SHORT).show();
+                if (option.equals("signup")) {
+                    if (checkTerms.isChecked()) {
+                        mSmsButton.setEnabled(true);
+                        mFlashCallButton.setEnabled(true);
+                        System.out.println("flash button clicked");
+                        if (!mPhoneNumber.getText().toString().trim().matches(""))
+                            checkmeth("flashcall");
+                        else
+                            Toast.makeText(MobileRegisterAct.this, "Please enter a valid mobile number", Toast.LENGTH_SHORT).show();
+                    } else if (!checkTerms.isChecked()) {
+                        mSmsButton.setEnabled(false);
+                        mFlashCallButton.setEnabled(false);
+                        Toast.makeText(MobileRegisterAct.this, "Please agree to above terms and conditions before proceeding", Toast.LENGTH_SHORT).show();
+                        mSmsButton.setEnabled(true);
+                        mFlashCallButton.setEnabled(true);
+                    }
+                }else if (option.equals("signin")) {
+                    System.out.println("flash button clicked");
+                    if (!mPhoneNumber.getText().toString().trim().matches(""))
+                        checkmeth("flashcall");
+                    else
+                        Toast.makeText(MobileRegisterAct.this, "Please enter a valid mobile number", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -152,6 +199,9 @@ public class MobileRegisterAct extends ToadoBaseActivity {
                 }
             }
         });
+
+
+
     }
 
     private void openActivity(String phoneNumber1, String method) {

@@ -47,9 +47,7 @@ public class RequestDetails {
         RequestDetails usr = new RequestDetails();
         usr.setOtherusrname(dataSnapshot.child("Name").getValue().toString());
         usr.setOtherusrkey(dataSnapshot.getKey().toString());
-
-
-       // usr.setProfpicurl(dataSnapshot.child("ProfpicUrl").getValue().toString());
+        usr.setProfpicurl(dataSnapshot.child("ProfilePicUrl").getValue().toString());
 
 
         return usr;

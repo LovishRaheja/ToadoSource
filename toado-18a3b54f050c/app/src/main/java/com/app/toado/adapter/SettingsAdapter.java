@@ -1,7 +1,6 @@
 package com.app.toado.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.app.toado.NotificationsSettings.NotifiSettingsAct;
 import com.app.toado.R;
-import com.app.toado.activity.Account.AccountAct;
+import com.app.toado.TinderChat.Matches.MatchesActivity;
 import com.app.toado.activity.Account.AccountUpdate;
+import com.app.toado.activity.AppSettings.AppSettings;
 import com.app.toado.activity.ChatSettings.ChatSettingsAct;
+import com.app.toado.activity.Help;
+import com.app.toado.activity.Invite.Invite;
 import com.app.toado.activity.profile.ProfileAct;
 import com.app.toado.activity.settings.DistancePreferencesActivity;
 import com.app.toado.helper.ToadoAlerts;
@@ -65,8 +66,13 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.MyView
                     case "Account":
                         context.startActivity(new Intent(context, AccountUpdate.class));
                         break;
+                    case "Chats":
+                        context.startActivity(new Intent(context,ChatSettingsAct.class));
+                        break;
                     case "Invite":
-                        try {
+                        context.startActivity(new Intent(context,Invite.class));
+                        break;
+                      /**  try {
                             Intent i = new Intent(Intent.ACTION_SEND);
                             i.setType("text/plain");
                             i.putExtra(Intent.EXTRA_SUBJECT, "My application name");
@@ -77,6 +83,10 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.MyView
                         } catch(Exception e) {
                             //e.toString();
                         }
+                        break;*/
+
+                    case "App Settings":
+                        context.startActivity(new Intent(context,AppSettings.class));
                         break;
                     case "Distance and Gps":
                         context.startActivity(new Intent(context, DistancePreferencesActivity.class));
@@ -84,6 +94,10 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.MyView
                     case "Logout":
                         ToadoAlerts.showLogoutAlert(context,usess);
                         break;
+                    case "Help":
+                        context.startActivity(new Intent(context, Help.class));
+
+
                 }
             }
         });

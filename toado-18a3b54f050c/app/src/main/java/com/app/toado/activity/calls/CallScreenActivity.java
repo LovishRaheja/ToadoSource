@@ -8,10 +8,14 @@ import com.app.toado.helper.CircleTransform;
 import com.app.toado.helper.GetTimeStamp;
 import com.app.toado.helper.CallHelper;
 import com.app.toado.model.CallDetails;
+import com.app.toado.model.User;
 import com.app.toado.services.SinchCallService;
 import com.app.toado.settings.CallSession;
 import com.app.toado.settings.UserSession;
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.sinch.android.rtc.PushPair;
 import com.sinch.android.rtc.calling.Call;
 import com.sinch.android.rtc.calling.CallEndCause;
@@ -39,6 +43,7 @@ import java.util.TimerTask;
 
 import static com.app.toado.helper.ToadoConfig.DBREF;
 import static com.app.toado.helper.ToadoConfig.DBREF_CALLS;
+import static com.app.toado.helper.ToadoConfig.DBREF_USER_PROFILES;
 
 public class CallScreenActivity extends BaseActivity {
 
@@ -153,6 +158,43 @@ public class CallScreenActivity extends BaseActivity {
 
     @Override
     public void onServiceConnected() {
+        final Call call = getSinchServiceInterface().getCall(mCallId);
+        if (call != null) {
+            call.addCallListener(new SinchCallListener());
+            mCallState.setText(call.getState().toString());
+            otherusrkey = call.getRemoteUserId();
+            Glide.with(CallScreenActivity.this).load(otherusrimg).dontAnimate()
+                    .transform(new CircleTransform(CallScreenActivity.this)).into(mCallImg);
+            mCallerName.setText(otherusername);
+        }
+
+        DBREF_USER_PROFILES.child(call.getRemoteUserId()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    User u = User.parse(dataSnapshot);
+
+                    otherusrimg = u.getProfpicurl();
+
+                    Glide.with(CallScreenActivity.this).load(u.getProfpicurl()).dontAnimate()
+                            .transform(new CircleTransform(CallScreenActivity.this)).error(R.drawable.nouser).into(mCallImg);
+
+                } else {
+
+                    Glide.with(CallScreenActivity.this).load(call.getHeaders().get("profilepic")).dontAnimate()
+                            .transform(new CircleTransform(CallScreenActivity.this)).error(R.drawable.nouser).into(mCallImg);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
         try {
             notificationManager = getSinchServiceInterface().showNotification(otherusername);

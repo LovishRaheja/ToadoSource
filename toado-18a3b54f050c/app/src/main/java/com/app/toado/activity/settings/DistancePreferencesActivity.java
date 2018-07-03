@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,13 @@ public class DistancePreferencesActivity extends ToadoBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_distance_user_preferences);
         submit = (Button) findViewById(R.id.submit);
+        ImageView back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         Toast.makeText(DistancePreferencesActivity.this, "Minimum Distance must be greater than 10.", Toast.LENGTH_SHORT).show();
 
@@ -74,7 +82,7 @@ public class DistancePreferencesActivity extends ToadoBaseActivity {
             tvdist.setText(10 + " miles");
         }
 
-        seekBar1.setMax(50);
+        seekBar1.setMax(2000);
 
         seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 

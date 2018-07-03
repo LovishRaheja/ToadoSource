@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/starLayout">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_margin="5dp">
+
+      <ImageView
+          android:layout_width="30dp"
+          android:layout_height="30dp"
+          android:src="@drawable/nouser"
+          android:layout_centerVertical="true"
+          android:id="@+id/userImage"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/sender"
+          android:text="sender"
+          android:textColor="@color/colorPrimary"
+          android:textStyle="bold"
+          android:textSize="12dp"
+          android:layout_centerVertical="true"
+          android:layout_marginLeft="10dp"
+          android:layout_toRightOf="@+id/userImage"
+          />
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/chevron_right"
+          android:layout_toRightOf="@+id/sender"
+          android:id="@+id/center_view"
+          android:layout_centerVertical="true"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/reciever"
+          android:textSize="12dp"
+          android:text="reciever"
+          android:textColor="@color/colorPrimary"
+          android:textStyle="bold"
+          android:layout_centerVertical="true"
+          android:layout_marginLeft="10dp"
+          android:layout_toRightOf="@+id/center_view"
+          />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/textTime"
+          android:layout_centerVertical="true"
+          android:layout_alignParentRight="true"
+          />
+
+
+   </RelativeLayout>
+   <LinearLayout
+       android:layout_width="250dp"
+       android:layout_height="wrap_content"
+
+       android:layout_marginLeft="50dp">
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/text"
+
+       android:textColor="@color/white"
+       android:padding="10dp"
+       android:textSize="12dp"
+       android:background="@drawable/chat_bubble"
+       /></LinearLayout>
+
+   <View
+       android:layout_width="match_parent"
+       android:layout_height="0.5dp"
+       android:background="@color/bpDark_gray"
+       android:layout_margin="10dp"></View>
+
+
+</LinearLayout>

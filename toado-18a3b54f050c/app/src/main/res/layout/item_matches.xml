@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="15sp">
+    <ImageView
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/MatchImage"/>
+
+    <ImageView android:layout_width="10dp"
+        android:layout_height="10dp"
+
+        android:id="@+id/showOnline"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/not_online"></ImageView>
+    <LinearLayout
+        android:paddingLeft="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/MatchImage"
+
+        >
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Match's Name"
+            android:textStyle="bold"
+
+            android:textSize="16dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:id="@+id/MatchName"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recentMsg"
+            android:visibility="gone"
+            android:text="hlo"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Match's ID"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:id="@+id/Matchid"/>
+
+</RelativeLayout>

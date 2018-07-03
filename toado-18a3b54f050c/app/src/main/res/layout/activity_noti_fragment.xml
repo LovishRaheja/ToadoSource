@@ -1,28 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.app.toado.activity.Notifications.NotiFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:id="@+id/notifiLayout">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:src="@drawable/appicon" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textSize="12sp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:text="Rate Toado on Play Store"/>
+
+    </LinearLayout>
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0.5dp"
+    android:layout_marginLeft="70dp"
+    android:background="@color/bpLight_gray"></View>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/img2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+
+                android:src="@drawable/appicon" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textSize="12sp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:text="Like our facebook page if you like our concept"/>
+
+
+        </LinearLayout>
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="70dp"
+            android:background="@color/bpLight_gray"></View>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/img3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+
+                android:src="@drawable/nouser" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+              android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:text="Sumit "/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+
+
+                android:layout_gravity="center_vertical"
+                android:text="is now connected with you"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvnotification"
-        android:layout_below="@+id/tvtitle"
+        android:layout_below="@+id/notifiLayout"
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No New Notifications"
-        android:layout_gravity="center"
-        android:id="@+id/empty"
 
-        />
-
-</FrameLayout>
+</RelativeLayout>

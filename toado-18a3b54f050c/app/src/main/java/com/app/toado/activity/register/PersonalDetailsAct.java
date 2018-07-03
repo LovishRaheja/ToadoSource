@@ -2,6 +2,7 @@ package com.app.toado.activity.register;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.location.LocationManager;
@@ -12,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -133,11 +135,19 @@ public class PersonalDetailsAct extends ToadoBaseActivity implements CalendarDat
         addInterest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (enterInterest.getText().equals(null)) {
+                    System.out.print("NO interest added");
+                }else{
+                    interest=interest+ enterInterest.getText().toString()+" ";
+
+                    showInterest.setText(interest.substring(0,interest.length()-1));
+                    enterInterest.setText("");
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(enterInterest.getApplicationWindowToken(), 0);
+
+                }
 
 
-                interest=interest+ enterInterest.getText().toString()+"\n";
-
-               showInterest.setText(interest.substring(0,interest.length()-2));
 
 
             }

@@ -10,11 +10,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.toado.R;
+import com.app.toado.activity.Invite.InviteFacebook;
+import com.app.toado.helper.CircleTransform;
 import com.app.toado.settings.UserSession;
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +34,9 @@ public class NotiFragment extends Fragment {
     private NotifiAdapter mAdapter;
     private RecyclerView recyclerView;
     ArrayList<NotifiDetails> list;
-    TextView empty;
+
+
+    //ImageView img1,img2,img3;
 
     public static NotiFragment newInstance() {
         NotiFragment fragment = new NotiFragment();
@@ -50,10 +56,14 @@ public class NotiFragment extends Fragment {
         fmm = getFragmentManager();
         final UserSession usess = new UserSession(getActivity());
 
+       // img1=(ImageView)v.findViewById(R.id.img1);
+      //  img2=(ImageView)v.findViewById(R.id.img2);
+       // img3=(ImageView)v.findViewById(R.id.img3);
+
 
         recyclerView = (RecyclerView)v. findViewById(R.id.rvnotification);
         list=new ArrayList<>();
-        empty=(TextView)v.findViewById(R.id.empty);
+
         recyclerView.setHasFixedSize(true);
         mAdapter = new NotifiAdapter(list,getActivity(),getContext());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
@@ -73,6 +83,10 @@ public class NotiFragment extends Fragment {
                // }
 
 
+      //  Glide.with(getActivity()).load(R.drawable.img10).dontAnimate().transform(new CircleTransform(getActivity())).into(img1);
+      //  Glide.with(getActivity()).load(R.drawable.img8).dontAnimate().transform(new CircleTransform(getActivity())).into(img2);
+
+      //  Glide.with(getActivity()).load(R.drawable.img9).dontAnimate().transform(new CircleTransform(getActivity())).into(img3);
 
 
 
@@ -83,17 +97,19 @@ public class NotiFragment extends Fragment {
                 NotifiDetails cd = NotifiDetails.parse(dataSnapshot);
                 //list.add(cd);
                 //mAdapter.notifyDataSetChanged();
-                if(dataSnapshot.child("Status").getValue().equals("accepted"))
-                {
-                    list.add(cd);
-                    mAdapter.notifyDataSetChanged();
+                if(dataSnapshot.child("Status").exists()) {
+                    if (dataSnapshot.child("Status").getValue().equals("accepted")) {
+                        list.add(cd);
+                        mAdapter.notifyDataSetChanged();
 
+                    } else if (dataSnapshot.child("Status").getValue().equals("sent")) {
+                        Toast.makeText(getContext(), "No new Notifications", Toast.LENGTH_LONG).show();
+                        mAdapter.notifyDataSetChanged();
+
+                    }
                 }
-                else if(dataSnapshot.child("Status").getValue().equals("sent"))
-                {
-                    Toast.makeText(getContext(),"No new Notifications",Toast.LENGTH_LONG).show();
-                    mAdapter.notifyDataSetChanged();
-
+                else{
+                    Toast.makeText(getContext(), "No recent notifications", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -122,10 +138,7 @@ public class NotiFragment extends Fragment {
 
         });
 
-if(list.size()>0)
-{
-    empty.setVisibility(View.GONE);
-}
+
         return v;
     }
 
@@ -133,6 +146,8 @@ if(list.size()>0)
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 //        setupUI(view.findViewById(R.id.relcity));
+
+
 
     }
     @Override

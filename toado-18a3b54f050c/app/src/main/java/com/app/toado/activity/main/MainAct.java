@@ -1,12 +1,12 @@
 package com.app.toado.activity.main;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.location.LocationManager;
 import android.os.AsyncTask;
@@ -15,6 +15,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,23 +25,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.toado.R;
+import com.app.toado.TinderChat.Matches.MatchesActivity;
 import com.app.toado.activity.BaseActivity;
-import com.app.toado.activity.Notifications.NotiFragment;
-import com.app.toado.activity.Notifications.NotifiAdapter;
-import com.app.toado.activity.Notifications.NotifiDetails;
 import com.app.toado.activity.Notifications.NotificationsAct;
-import com.app.toado.activity.Notifications.RequestAdapter;
 import com.app.toado.activity.calls.CallScreenActivity;
-import com.app.toado.activity.chat.StarMessageActivity;
-import com.app.toado.activity.profile.ProfileAct;
-import com.app.toado.activity.settings.SettingsActivity;
-import com.app.toado.adapter.StarredMessageAdapter;
+import com.app.toado.TinderChat.StarredMessages.StarMessageActivity;
 import com.app.toado.fragments.mainviewpager.MainpagerAdapter;
 import com.app.toado.fragments.mainviewpager.MainpagerItems;
 import com.app.toado.helper.MyXMPP2;
 import com.app.toado.helper.ToadoAlerts;
 import com.app.toado.helper.MarshmallowPermissions;
- import com.app.toado.settings.CallSession;
+import com.app.toado.settings.CallSession;
 import com.app.toado.settings.UserSession;
 import com.app.toado.services.LocServ;
 import com.app.toado.services.SinchCallService;
@@ -48,11 +43,8 @@ import com.facebook.AccessToken;
 import com.facebook.FacebookException;
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
-import static android.R.id.list;
 import static com.app.toado.helper.ToadoConfig.DBREF_FCM;
 
 /**
@@ -66,6 +58,7 @@ public class MainAct extends BaseActivity {
     private ViewPager viewPager;
 
     ImageView notifications;
+    ImageView menuOptions;
 
     private MarshmallowPermissions marshmallowPermissions;
     String usrkey;
@@ -100,8 +93,35 @@ public class MainAct extends BaseActivity {
         notifications=(ImageView) findViewById(R.id.notif);
         TextView count=(TextView)findViewById(R.id.count);
 
+        menuOptions=(ImageView)findViewById(R.id.optionsMenu);
 
+        menuOptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                final PopupMenu popup = new PopupMenu(MainAct.this, findViewById(R.id.optionsMenu));
+                //Inflating the Popup using xml file
+                popup.getMenuInflater()
+                        .inflate(R.menu.menu_main, popup.getMenu());
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case (R.id.menubroadcast):
+                               Intent i=new Intent(MainAct.this,MatchesActivity.class);
+                                startActivity(i);
+                                break;
+                            case (R.id.menustar):
+                                Intent i1=new Intent(MainAct.this,StarMessageActivity.class);
+                                startActivity(i1);
+                                break;
+                        }
+                        return true;
+                    }
+                });
+                popup.show();
+            }
+        });
 
         notifications.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,6 +206,39 @@ public class MainAct extends BaseActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        return super.onCreateOptionsMenu(menu);
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+
+        if (id == R.id.menubroadcast) {
+            Toast.makeText(this, "Broadcast Messages is Clicked", Toast.LENGTH_LONG).show();
+
+            return true;
+        }
+
+        if (id == R.id.menustar) {
+            Toast.makeText(this, "Starred Messages is Clicked", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void getFbAccessToken() {
 
@@ -232,6 +285,8 @@ public class MainAct extends BaseActivity {
                         int tabIconColor = ContextCompat.getColor(MainAct.this, R.color.colorPrimary);
                         tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
 
+
+
                     }
 
                     @Override
@@ -240,6 +295,7 @@ public class MainAct extends BaseActivity {
                         int tabIconColor = ContextCompat.getColor(MainAct.this, R.color.grey_300);
 
                         tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
+
                     }
 
                     @Override
@@ -257,7 +313,7 @@ public class MainAct extends BaseActivity {
     }
 
     private void setupIcons() {
-        tabLayout.getTabAt(0).setIcon(R.drawable.tab2);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_chat_bubble_black_24dp);
         tabLayout.getTabAt(1).setIcon(R.drawable.tab1);
         tabLayout.getTabAt(2).setIcon(R.drawable.tab3);
         tabLayout.getTabAt(3).setIcon(R.drawable.tab4);
@@ -397,8 +453,9 @@ if(viewPager.getCurrentItem()>0)
 {
     viewPager.setCurrentItem(0);
 }
-else{
+else if(viewPager.getCurrentItem()==0){
     finish();
+System.exit(0);
 
 }
     }

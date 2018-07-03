@@ -18,8 +18,11 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:padding="7dp"
+            android:id="@+id/groupReady"
             android:tint="@color/white"
-            android:src="@drawable/ic_check_black_24dp" />
+            android:src="@drawable/ic_check_black_24dp"
+            android:visibility="gone"
+           />
 
 
         <TextView
@@ -35,22 +38,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingEnd="20dp"
-        android:paddingStart="20dp"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:paddingStart="20dp">
 
-        <TextView
+        <ImageView
             android:id="@+id/icon_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_textview"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:gravity="center"
-            android:text="R"
-            android:textColor="@android:color/white"
-            android:textSize="30sp" />
+            android:src="@drawable/ic_add_a_photo_black_24dp"
+            android:tint="@color/colorPrimary"
+
+            />
 
         <EditText
             android:id="@+id/editGroupName"
@@ -62,6 +65,7 @@
             android:paddingBottom="20dp"
             android:paddingLeft="20dp" />
     </LinearLayout>
+
     <View
         android:id="@+id/line"
         android:layout_width="match_parent"
@@ -69,12 +73,6 @@
         android:layout_marginBottom="10dp"
         android:background="@color/grey_300" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Participants Below"
-        android:layout_margin="15dp"
-        android:textSize="22dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleListFriend"

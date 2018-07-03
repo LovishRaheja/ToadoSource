@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/docLayout"
+    android:padding="10dp"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal"
+        android:id="@+id/docLinear"
+
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/grey_300"
+           >
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:id="@+id/docImage"
+
+            android:tint="@color/white"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_link_black_24dp"/>
+</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/radial_gray_light">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="File Name"
+            android:layout_toRightOf="@+id/docImage"
+            android:textSize="14dp"
+            android:id="@+id/docName"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_margin="10dp"
+            android:fitsSystemWindows="true"
+           android:textColor="@color/black"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"/>
+
+
+    </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
+

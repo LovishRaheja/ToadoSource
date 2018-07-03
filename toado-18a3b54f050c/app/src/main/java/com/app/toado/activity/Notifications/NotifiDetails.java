@@ -37,12 +37,18 @@ public class NotifiDetails {
     }
 
 
+    public String getOtherusrkey() {
+        return otherusrkey;
+    }
 
-
+    public void setOtherusrkey(String otherusrkey) {
+        this.otherusrkey = otherusrkey;
+    }
 
     public static NotifiDetails parse(DataSnapshot dataSnapshot) throws NullPointerException {
         NotifiDetails usr = new NotifiDetails();
         usr.setOtherusrname(dataSnapshot.child("Name").getValue().toString());
+        usr.setProfpicurl(dataSnapshot.child("ProfilePicUrl").getValue().toString());
 
 
 
