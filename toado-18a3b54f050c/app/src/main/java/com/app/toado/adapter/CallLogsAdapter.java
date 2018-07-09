@@ -3,8 +3,11 @@ package com.app.toado.adapter;
 
 import android.app.Activity;
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.ServiceConnection;
 import android.graphics.Color;
+import android.os.IBinder;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.toado.R;
+import com.app.toado.TinderChat.Chat.ChatActivity;
 import com.app.toado.activity.BaseActivity;
 import com.app.toado.activity.ToadoAppCompatActivity;
 import com.app.toado.activity.userprofile.UserProfileAct;
@@ -39,13 +43,16 @@ import static com.app.toado.helper.ToadoConfig.DBREF_USER_PROFILES;
  * Created by ghanendra on 02/07/2017.
  */
 
-public class CallLogsAdapter extends RecyclerView.Adapter<CallLogsAdapter.MyViewHolder>{
+public class CallLogsAdapter extends RecyclerView.Adapter<CallLogsAdapter.MyViewHolder> implements ServiceConnection{
 
     private List<CallDetails> phnList;
     private Context contx;
     UserSession us;
     Activity a;
     SinchCallService callserv;
+
+    private SinchCallService.SinchServiceInterface mSinchServiceInterface;
+
 
     boolean mServiceBound = false;
     private ToadoAppCompatActivity toadoAppCompatActivity;
@@ -56,6 +63,43 @@ public class CallLogsAdapter extends RecyclerView.Adapter<CallLogsAdapter.MyView
         this.phnList = phnList;
         this.contx = contx;
         us = new UserSession(contx);
+    }
+
+    public void onServiceConnected() {
+
+        try {
+            callserv = getSinchServiceInterface().getService();
+            getSinchServiceInterface().startClient(us.getUserKey());
+            mServiceBound = true;
+        } catch (NullPointerException e) {
+            //getSinchServiceInterface() in doStuff below throw null pointer error.
+        }
+    }
+
+
+
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+
+
+        if (SinchCallService.class.getName().equals(name.getClassName())) {
+            mSinchServiceInterface = (SinchCallService.SinchServiceInterface) service;
+            onServiceConnected();
+        }
+
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+        if (SinchCallService.class.getName().equals(name.getClassName())) {
+            mSinchServiceInterface = null;
+
+        }
+
+            mServiceBound = false;
+    }
+    protected SinchCallService.SinchServiceInterface getSinchServiceInterface() {
+        return mSinchServiceInterface;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -102,10 +146,7 @@ public class CallLogsAdapter extends RecyclerView.Adapter<CallLogsAdapter.MyView
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.row_callog, parent, false);
 
-      //  marshmallowPermissions = new MarshmallowPermissions(a);
 
-       // if (!marshmallowPermissions.checkPermissionForCalls())
-           // marshmallowPermissions.requestPermissionForCalls();
 
         return new MyViewHolder(itemView);
     }
@@ -113,12 +154,13 @@ public class CallLogsAdapter extends RecyclerView.Adapter<CallLogsAdapter.MyView
     @Override
     public void onBindViewHolder(final CallLogsAdapter.MyViewHolder holder, int position) {
 
-        final SinchCallService.SinchServiceInterface sinchServiceInterface=null;
-        CallDetails phn = phnList.get(position);
+       // final SinchCallService.SinchServiceInterface sinchServiceInterface=null;
+        final CallDetails phn = phnList.get(position);
         System.out.println(phn.getDuration() + " call logs adapter " + phn.getOtherusrname() + phn.getDuration());
         holder.title.setText(phn.getOtherusrname());
         final String otherusername=phn.getOtherusrname();
-        final String otheruserkey=phn.getCalleruid();
+        final String otheruserkey=phn.getReceiveruid();
+        final String otherprofileimage=phn.getProfpicurl();
 
 
 //        final String imgurl=phn.getProfpicurl().toString();
@@ -146,10 +188,11 @@ public class CallLogsAdapter extends RecyclerView.Adapter<CallLogsAdapter.MyView
 
                 if(holder.type.getText().equals("outgoing voice call")||holder.type.getText().equals("incoming voice call")) {
                     Toast.makeText(v.getContext(), "outgoing voice call", Toast.LENGTH_LONG).show();
+                    CallHelper.vidcallbtnClicked(getSinchServiceInterface(), marshmallowPermissions, us.getUserKey(),otheruserkey, otherusername, otherprofileimage,contx);
                 }
                 else{
 
-
+                    CallHelper.vidcallbtnClicked(getSinchServiceInterface(), marshmallowPermissions, us.getUserKey(), phn.getCalleruid(), otherusername, phn.getProfpicurl(),contx);
                   //  CallHelper.vidcallbtnClicked(,marshmallowPermissions, us.getUserKey(), otheruserkey, otherusername, holder.imgCallStatus, CallLogsAdapter.this);
                     Toast.makeText(v.getContext(), "outgoing video call", Toast.LENGTH_LONG).show();
 

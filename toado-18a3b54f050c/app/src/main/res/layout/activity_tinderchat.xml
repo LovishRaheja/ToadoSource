@@ -471,7 +471,7 @@
                     android:clickable="true"
                     android:layout_gravity="center_vertical"
                     android:foreground="@drawable/rippleffect"
-                    android:src="@drawable/iconattachment" />
+                    android:src="@drawable/ic_attachment_black_24dp" />
             </LinearLayout>
 
 

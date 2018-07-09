@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -30,6 +31,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,6 +78,7 @@ public class GroupChatActivity extends AppCompatActivity {
     String a;
     TextView groupName;
     ImageView iconprofile;
+    String mImageUri="noImage";
     String groupId;
     private RecyclerView mRecyclerView;
     GroupChatAdapter mChatAdapter;
@@ -99,6 +102,7 @@ public class GroupChatActivity extends AppCompatActivity {
     private int PICK_DOCS = 44;
     private int MULTIPLE_IMAGE_SELECT = 111;
 
+    RelativeLayout mainLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +136,29 @@ public class GroupChatActivity extends AppCompatActivity {
         contAttach2 = (ImageButton) findViewById(R.id.contAttach2);
 
         iconprofile=(ImageView)findViewById(R.id.icon_profile);
+
+        mainLayout=(RelativeLayout)findViewById(R.id.mainLayout);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mImageUri = preferences.getString("image", null);
+        mainLayout.setBackgroundResource(R.drawable.back);
+        if(mImageUri!=null){
+            if(mImageUri.equals("image")){
+                mainLayout.setBackgroundResource(R.drawable.back);
+            }
+            else {
+                File f = new File(getRealPathFromURI(Uri.parse(mImageUri)));
+                Drawable d = Drawable.createFromPath(f.getAbsolutePath());
+                mainLayout.setBackground(d);
+            }
+        }
+        else
+        {
+            mainLayout.setBackgroundResource(R.drawable.back);
+        }
+
+
+
+
         groupId=getIntent().getStringExtra("groupId");
         attachment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -446,6 +473,18 @@ finish();
         }
     }
 
+
+
+    private String getRealPathFromURI(Uri contentURI) {
+        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) { // Source is Dropbox or other similar local file path
+            return contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            return cursor.getString(idx);
+        }
+    }
 
 
     private void sendMessage() {

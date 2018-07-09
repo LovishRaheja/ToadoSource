@@ -7,7 +7,7 @@
 
     <item
         android:id="@+id/edit"
-        android:title="Edit"/>
+        android:title="Edit Group Image"/>
 
 
 </menu>

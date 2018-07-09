@@ -271,8 +271,10 @@
         <activity android:name=".fragments.sharedItems.ShowSharedMedia" />
         <activity android:name=".activity.GroupChat.GroupShareLocation" />
         <activity android:name=".activity.GroupChat.GroupChatContacts.GroupChatContact" />
-        <activity android:name=".activity.Help" />
-        <activity android:name=".activity.AppInfo"></activity>
+        <activity android:name=".activity.Help.Help" />
+        <activity android:name=".activity.AppInfo" />
+        <activity android:name=".activity.Help.ContactUs" />
+        <activity android:name=".activity.profile.EditGroupName"></activity>
     </application>
 
 </manifest>

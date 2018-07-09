@@ -1,6 +1,9 @@
 package com.app.toado.fragments.call;
 
+import android.content.ComponentName;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -32,7 +35,7 @@ import static com.app.toado.helper.ToadoConfig.DBREF_CALLS;
  * Created by ghanendra on 14/06/2017.
  */
 
-public class CallFragment extends Fragment {
+public class CallFragment extends Fragment implements ServiceConnection{
     private View myFragmentView;
     FragmentManager fmm;
     ArrayList<CallDetails> phnlist;
@@ -142,5 +145,13 @@ nocall=(TextView)view.findViewById(R.id.nocall);
     }
 
 
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
 
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+
+    }
 }

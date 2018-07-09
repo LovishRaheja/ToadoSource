@@ -1,4 +1,4 @@
-package com.app.toado.activity;
+package com.app.toado.activity.Help;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,8 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.toado.R;
-
-import org.w3c.dom.Text;
+import com.app.toado.activity.AppInfo;
 
 public class Help extends AppCompatActivity {
 
@@ -52,6 +51,14 @@ public class Help extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(Help.this,AppInfo.class);
+                startActivity(i);
+            }
+        });
+        contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i=new Intent(Help.this,ContactUs.class);
                 startActivity(i);
             }
         });

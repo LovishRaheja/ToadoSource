@@ -9,11 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.app.toado.R;
-import com.app.toado.TinderChat.Matches.MatchesActivity;
 import com.app.toado.activity.Account.AccountUpdate;
 import com.app.toado.activity.AppSettings.AppSettings;
 import com.app.toado.activity.ChatSettings.ChatSettingsAct;
-import com.app.toado.activity.Help;
+import com.app.toado.activity.Help.Help;
 import com.app.toado.activity.Invite.Invite;
 import com.app.toado.activity.profile.ProfileAct;
 import com.app.toado.activity.settings.DistancePreferencesActivity;

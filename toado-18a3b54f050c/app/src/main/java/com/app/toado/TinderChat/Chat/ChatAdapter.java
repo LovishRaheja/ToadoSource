@@ -193,7 +193,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolders> {
 
 
 
-        if(chatList.get(position).getMessage().contains("docx")| chatList.get(position).getMessage().contains("pdf")|chatList.get(position).getMessage().contains("doc"))
+        if(chatList.get(position).getMessage().contains("docx") |chatList.get(position).getMessage().contains("txt") | chatList.get(position).getMessage().contains("pdf")|chatList.get(position).getMessage().contains("doc"))
         {
 
             holder.docLayout.setVisibility(View.VISIBLE);

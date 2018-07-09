@@ -114,7 +114,7 @@ public class ChatFragmentAdapter extends RecyclerView.Adapter<ChatFragmentViewHo
 
                                 String recent=dataSnapshot.child("text").getValue().toString();
 
-                                if(recent.contains("docx")| recent.contains("pdf")|recent.contains("doc")){
+                                if(recent.contains("docx")|recent.contains("txt")| recent.contains("pdf")|recent.contains("doc")){
                                     holder.recentMsg.setText("Document");
                                 }
                                 else if(recent.contains("chatImages")){

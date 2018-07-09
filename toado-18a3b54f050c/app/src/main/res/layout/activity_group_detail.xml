@@ -41,7 +41,7 @@
                 android:layout_weight="1"
                 android:visibility="invisible"/>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/detail_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -97,6 +97,17 @@
                 android:id="@+id/sendProfile"
                 android:visibility="gone"
                 android:layout_marginRight="10dp"/>
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editGroup"
+                android:src="@drawable/ic_edit_black_24dp"
+                android:tint="@color/white"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:padding="10dp"/>
 
         </RelativeLayout>
 
